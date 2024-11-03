@@ -24,7 +24,7 @@ export async function HereAutocomplete(options: AutocompleteOptions) {
   return response.items.map((item) => formatResult(item));
 }
 
-function formatResult(result: Item) {
+export function formatResult(result: Item) {
   return {
     formattedAddress: result.title,
     components: {

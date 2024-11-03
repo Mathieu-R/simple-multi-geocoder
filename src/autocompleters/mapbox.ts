@@ -28,16 +28,16 @@ export async function MapboxAutocomplete(options: AutocompleteOptions) {
   return response.suggestions.map((item) => formatResult(item));
 }
 
-function formatResult(result: Suggestion) {
+export function formatResult(result: Suggestion) {
   return {
-    formattedAddress: result.full_address,
+    formattedAddress: result.full_address || result.address || `${result.name} ${result.place_formatted}`,
     components: {
-      streetNumber: result.context.street.name,
-      zipCode: result.context.postcode.name,
-      city: result.context.place.name,
-      region: result.context.region.name,
-      country: result.context.country.name,
-      countryCode: result.context.country.country_code,
+      streetNumber: result.context.street?.name,
+      zipCode: result.context.postcode?.name,
+      city: result.context.place?.name,
+      region: result.context.region?.name,
+      country: result.context.country?.name,
+      countryCode: result.context.country?.country_code,
     },
     extra: {
       id: result.mapbox_id,

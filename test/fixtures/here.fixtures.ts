@@ -1,4 +1,4 @@
-export const apiResponse = {
+export const apiFowardGeocodingResponse = {
   items: [
     {
       title: "Rue du Belvédère 23, 1050 Ixelles, Belgique",
@@ -48,7 +48,7 @@ export const apiResponse = {
   ],
 };
 
-export const expectedFormattedResult = [
+export const expectedGeocodingFormattedResult = [
   {
     formattedAddress: "Rue du Belvédère 23, 1050 Ixelles, Belgique",
     latitude: 50.82679,

@@ -27,7 +27,7 @@ export async function GoogleAutocomplete(options: AutocompleteOptions) {
   return response.predictions.map((item) => formatResult(item));
 }
 
-function formatResult(result: Prediction) {
+export function formatResult(result: Prediction) {
   return {
     formattedAddress: result.structured_formatting.main_text,
     extra: {
