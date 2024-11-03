@@ -1,5 +1,5 @@
 import countries from "i18n-iso-countries";
-import { OptionMapping, ProvidersConfig } from "./types/common";
+import { Coordinates, OptionMapping, ProvidersConfig } from "./types/common";
 
 export enum Provider {
   GOOGLE = "google",
@@ -87,6 +87,8 @@ export const providers: ProvidersConfig = {
           {
             option: "coordinates",
             mappedParam: "latlng",
+            templateFn: (coordinates: Coordinates) =>
+              `${coordinates.latitude},${coordinates.longitude}`,
           },
         ],
       },
@@ -125,6 +127,8 @@ export const providers: ProvidersConfig = {
           {
             option: "coordinates",
             mappedParam: "at",
+            templateFn: (coordinates: Coordinates) =>
+              `${coordinates.latitude},${coordinates.longitude}`,
           },
         ],
       },

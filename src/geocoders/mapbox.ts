@@ -5,6 +5,7 @@ import ky from "ky";
 import {
   ForwardGeocodeOptions,
   GeocoderUnifiedResult,
+  GeocodeType,
   Params,
   ReverseGeocodeOptions,
 } from "../types/common";
@@ -13,7 +14,7 @@ import { createURLSearchParams, getSearchParamsObject } from "../utils";
 import { providers } from "../providers";
 
 export async function MapboxGeocode(
-  type: "forward" | "reverse",
+  type: GeocodeType,
   options: ForwardGeocodeOptions | ReverseGeocodeOptions,
 ) {
   const url = providers.mapbox.urls.geocode[type];
