@@ -11,7 +11,6 @@ import {
   ForwardGeocodeOptions,
   GeocoderUnifiedResult,
   GeocodeType,
-  Params,
   ReverseGeocodeOptions,
 } from "../types/common";
 import { providers } from "../providers";

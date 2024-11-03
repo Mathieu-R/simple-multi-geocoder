@@ -1,14 +1,14 @@
+import ky from "ky";
 import {
   MapboxAutocompleteResponse,
   Suggestion,
 } from "../types/autocompleters/mapbox";
-import { Provider, providers } from "../providers";
+import { providers } from "../providers";
 import {
   AutocompleteOptions,
   AutocompleteUnifiedResult,
 } from "../types/common";
 import { createURLSearchParams, getSearchParamsObject } from "../utils";
-import ky from "ky";
 
 export async function MapboxAutocomplete(options: AutocompleteOptions) {
   const url = providers.mapbox.urls.autocomplete;

@@ -8,7 +8,7 @@ import {
   GoogleAutocompleteResponse,
   Prediction,
 } from "../types/autocompleters/google";
-import { Provider, providers } from "../providers";
+import { providers } from "../providers";
 
 export async function GoogleAutocomplete(options: AutocompleteOptions) {
   const url = providers.google.urls.autocomplete;

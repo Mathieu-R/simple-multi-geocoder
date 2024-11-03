@@ -5,7 +5,7 @@ import {
 } from "../types/common";
 import { createURLSearchParams, getSearchParamsObject } from "../utils";
 import { HereAutocompleteResponse, Item } from "../types/autocompleters/here";
-import { Provider, providers } from "../providers";
+import { providers } from "../providers";
 
 export async function HereAutocomplete(options: AutocompleteOptions) {
   const url = providers.here.urls.autocomplete;
