@@ -6,7 +6,7 @@ import { MapboxAutocomplete } from "./mapbox";
 import { AutocompleteOptions } from "../types/common";
 
 export async function autocomplete(
-  provider: Provider,
+  provider: `${Provider}`,
   options: AutocompleteOptions,
 ) {
   if (!options.sessionToken) {

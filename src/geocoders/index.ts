@@ -10,7 +10,7 @@ import { MapboxGeocode } from "./mapbox";
 
 async function geocode(
   type: GeocodeType,
-  provider: Provider,
+  provider: `${Provider}`,
   options: ForwardGeocodeOptions | ReverseGeocodeOptions,
 ) {
   if (provider === Provider.GOOGLE) {
@@ -29,14 +29,14 @@ async function geocode(
 }
 
 export async function forward(
-  provider: Provider,
+  provider: `${Provider}`,
   options: ForwardGeocodeOptions,
 ) {
   return geocode("forward", provider, options);
 }
 
 export async function reverse(
-  provider: Provider,
+  provider: `${Provider}`,
   options: ReverseGeocodeOptions,
 ) {
   return geocode("reverse", provider, options);

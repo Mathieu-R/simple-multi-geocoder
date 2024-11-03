@@ -29,11 +29,11 @@ const COMMON_HERE_OPTIONS: OptionMapping[] = [
   },
   {
     option: "language",
-    mappedParam: "language",
+    mappedParam: "lang",
   },
   {
     option: "country",
-    mappedParam: "components",
+    mappedParam: "in",
     // alpha-3 ISO code with `countryCode:<alpha-3 ISO code>`
     templateFn: (countryCodeAlpha2: string) =>
       `countryCode:${countries.alpha2ToAlpha3(countryCodeAlpha2)}`,
@@ -109,8 +109,7 @@ export const providers: ProvidersConfig = {
         forward: "https://geocode.search.hereapi.com/v1/geocode",
         reverse: "https://reverse.search.hereapi.com/v1/geocode",
       },
-      autocomplete:
-        "https://maps.googleapis.com/maps/api/place/autocomplete/json",
+      autocomplete: "https://autocomplete.search.hereapi.com/v1/autocomplete",
     },
     options: {
       geocode: {
@@ -180,7 +179,7 @@ export const providers: ProvidersConfig = {
         },
         {
           option: "sessionToken",
-          mappedParam: "sessionToken",
+          mappedParam: "session_token",
         },
       ],
     },
