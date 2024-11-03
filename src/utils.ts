@@ -8,30 +8,35 @@ export function createURLSearchParams(qs: Record<string, any> = {}) {
 export function getSearchParamsObject(
   options: Partial<Omit<AllOptions, "raw">>,
   optionsMapping: OptionMapping[],
-  level: number = 1,
+  level: number = 0,
 ): Params {
+  level = level + 1
+
   if (level === 1) {
     options.limit = options.limit || DEFAULT_LIMIT;
   }
 
   const params = optionsMapping.reduce((prev, current) => {
+    const { option, mappedParam, templateFn } = current;
+
     // option is not set by the user
-    if (!(current.option in options)) {
+    if (!(option in options)) {
       return prev;
     }
 
-    const { option, mappedParam, templateFn } = current;
     if (Array.isArray(mappedParam)) {
       // create search param object recursively
       return {
         ...prev,
-        ...getSearchParamsObject(options[option], mappedParam, level++),
+        ...getSearchParamsObject(options[option], mappedParam, level),
       };
     }
 
     prev[mappedParam] = templateFn
       ? templateFn(options[option])
       : options[option];
+
+    return prev
   }, {} as Params);
 
   if (level === 1 && options.params) {

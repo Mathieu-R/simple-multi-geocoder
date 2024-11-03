@@ -25,7 +25,7 @@ const COMMON_GOOGLE_OPTIONS: OptionMapping[] = [
 const COMMON_HERE_OPTIONS: OptionMapping[] = [
   {
     option: "apiKey",
-    mappedParam: "q",
+    mappedParam: "apiKey",
   },
   {
     option: "language",
