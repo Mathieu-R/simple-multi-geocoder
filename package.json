@@ -29,6 +29,9 @@
     "test:run": "vitest run",
     "prettier": "prettier --cache --write .",
     "prettier:check": "prettier --cache --check .",
+    "publish:patch": "npm version patch && npm publish",
+    "publish:minor": "npm version minor && npm publish",
+    "publish:major": "npm version major && npm publish",
     "prepublish": "pnpm run build"
   },
   "dependencies": {
