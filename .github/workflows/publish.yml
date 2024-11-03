@@ -1,0 +1,27 @@
+name: Publish
+on:
+    push:
+        tags: 
+          - 1.*
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        permissions:
+            contents: read
+            id-token: write
+        steps:
+            - uses: actions/checkout@v4
+            # Setup .npmrc file to publish to npm
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: "20.x"
+                  registry-url: "https://registry.npmjs.org"
+            - run: pnpm install --frozen-lockfile
+            - name: Test the package
+              run: pnpm run test
+            - name: Build the package
+              run: pnpm run build
+            - name: Publish the package
+              run: npm publish --access public
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "outDir": "build",
+    "target": "ESNext",
+    "module": "ESNext",
+    "resolveJsonModule": true,
+    "strict": false,
+    "noImplicitAny": false,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "useUnknownInCatchVariables": false,
+    "moduleResolution": "Bundler",
+    "sourceMap": true,
+    "allowJs": true
+  },
+  "include": ["src"],
+  "exclude": ["node_modules/", "dist/"]
+}
