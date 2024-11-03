@@ -1,9 +1,19 @@
 // https://developers.google.com/maps/documentation/geocoding/requests-geocoding?hl=fr
 
 import ky from "ky";
-import { createURLSearchParams, getSearchParamsObject, snakeToCamel } from '../utils';
+import {
+  createURLSearchParams,
+  getSearchParamsObject,
+  snakeToCamel,
+} from "../utils";
 import { Feature, GoogleResponse } from "../types/geocoders/google";
-import { ForwardGeocodeOptions, GeocoderUnifiedResult, GeocodeType, Params, ReverseGeocodeOptions } from "../types/common";
+import {
+  ForwardGeocodeOptions,
+  GeocoderUnifiedResult,
+  GeocodeType,
+  Params,
+  ReverseGeocodeOptions,
+} from "../types/common";
 import { providers } from "../providers";
 
 type Components = {
@@ -22,20 +32,20 @@ type Components = {
 
 export async function GoogleGeocode(
   type: GeocodeType,
-  options: ForwardGeocodeOptions | ReverseGeocodeOptions
+  options: ForwardGeocodeOptions | ReverseGeocodeOptions,
 ) {
   const url = providers.google.urls.geocode[type];
   const searchParamsObject = getSearchParamsObject(
     options,
-    providers.google.options.geocode[type]
+    providers.google.options.geocode[type],
   );
 
   const response = await ky<GoogleResponse>(url, {
-		searchParams: createURLSearchParams(searchParamsObject),
+    searchParams: createURLSearchParams(searchParamsObject),
   }).json();
 
   if (options.raw) {
-    return response
+    return response;
   }
 
   return response.results.map((feature) => formatResult(feature));

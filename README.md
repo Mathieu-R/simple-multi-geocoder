@@ -2,15 +2,15 @@
 
 ## Features
 
--   Geocode forward and reverse.
--   Autocomplete addresses.
--   Available both in the browser and node.
+- Geocode forward and reverse.
+- Autocomplete addresses.
+- Available both in the browser and node.
 
 ## Supported providers
 
--   Google
--   Here
--   Mapbox
+- Google
+- Here
+- Mapbox
 
 ## Installing
 
@@ -82,15 +82,15 @@ console.log(response)
 */
 ```
 
-| Parameter              | Description                                 |
-| ----------------------- | ------------------------------------------- |
+| Parameter                 | Description                                 |
+| ------------------------- | ------------------------------------------- |
 | `provider` (**required**) | Provider (_google_, _here_, _mapbox_) token |
 | `options` (**required**)  | Options object (**see below**)              |
 
 ##### options
 
 | Parameter               | Type    | Description                                                                                                              |
-|-------------------------|---------|--------------------------------------------------------------------------------------------------------------------------|
+| ----------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------ |
 | `apiKey` (**required**) | string  | Provider access token                                                                                                    |
 | `query` (**required**)  | string  | Complete address in string format (e.g. _Rue du Belvédère 23, 1050 Ixelles, Belgique_)                                   |
 | `language`              | string  | Language of the returned result (_[IETF BCP 47](https://en.wikipedia.org/wiki/IETF_language_tag) format_)                |
@@ -103,16 +103,16 @@ console.log(response)
 
 You can check the official API documentation from providers to see which options you can pass the geocoder
 
--   Google: https://developers.google.com/maps/documentation/geocoding/requests-geocoding?hl=en#geocoding-lookup
--   Mapbox: https://docs.mapbox.com/api/search/geocoding/#forward-geocoding-with-search-text-input
--   Here: https://www.here.com/docs/bundle/geocoding-and-search-api-v7-api-reference/page/index.html#/paths/~1geocode/get
+- Google: https://developers.google.com/maps/documentation/geocoding/requests-geocoding?hl=en#geocoding-lookup
+- Mapbox: https://docs.mapbox.com/api/search/geocoding/#forward-geocoding-with-search-text-input
+- Here: https://www.here.com/docs/bundle/geocoding-and-search-api-v7-api-reference/page/index.html#/paths/~1geocode/get
 
 #### Results
 
 We always return an array of object with the following fields
 
 | Field            | Type   | Description                                            |
-|------------------|--------|--------------------------------------------------------|
+| ---------------- | ------ | ------------------------------------------------------ |
 | formattedAddress | string | The complete formatted address                         |
 | latitude         | number | The latitude of the result                             |
 | longitude        | number | The longitude of the result                            |
@@ -122,7 +122,7 @@ We always return an array of object with the following fields
 ##### components
 
 | Field        | Type   | Description                                                                                                    |
-|--------------|--------|----------------------------------------------------------------------------------------------------------------|
+| ------------ | ------ | -------------------------------------------------------------------------------------------------------------- |
 | country      | string | The country where is located the result                                                                        |
 | countryCode  | string | The country code of the result ([ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format) |
 | state        | string | The state where is located the result                                                                          |
@@ -135,7 +135,7 @@ We always return an array of object with the following fields
 ##### extra
 
 | Field      | Type   | Description                                                                         |
-|------------|--------|-------------------------------------------------------------------------------------|
+| ---------- | ------ | ----------------------------------------------------------------------------------- |
 | id         | string | The unique identifier of the result provided by the provider                        |
 | bbox       | object | The bounding box of the result                                                      |
 | confidence | number | A number between 0 and 1 indicating how the result location correspond to our query |
@@ -185,27 +185,27 @@ console.log(response)
 */
 ```
 
-| Parameter              | Description                                 |
-| ----------------------- | ------------------------------------------- |
+| Parameter                 | Description                                 |
+| ------------------------- | ------------------------------------------- |
 | `provider` (**required**) | Provider (_google_, _here_, _mapbox_) token |
 | `options` (**required**)  | Options object (**see below**)              |
 
 ##### options
 
-| Parameter               | Type    | Description                                                                                                              |
-|-------------------------|---------|--------------------------------------------------------------------------------------------------------------------------|
-| `apiKey` (**required**) | string  | Provider access token                                                                                                    |
-| `coordinates` (**required**)  | object  | coordinates of the point to reverse geocode                                   |
-| `language`              | string  | Language of the returned result (_[IETF BCP 47](https://en.wikipedia.org/wiki/IETF_language_tag) format_)                |
-| `country`               | string  | Limit the search to a specific country (_[ISO_3166-1_alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format_) |
-| `limit`                 | number  | Maximum number of results to be returned (**default: 1**) (_not supported by Google_)                                    |
-| `raw`                   | boolean | Return the raw result                                                                                                    |
-| `params`                | object  | Params object specific to the provider (**see below**)   
+| Parameter                    | Type    | Description                                                                                                              |
+| ---------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `apiKey` (**required**)      | string  | Provider access token                                                                                                    |
+| `coordinates` (**required**) | object  | coordinates of the point to reverse geocode                                                                              |
+| `language`                   | string  | Language of the returned result (_[IETF BCP 47](https://en.wikipedia.org/wiki/IETF_language_tag) format_)                |
+| `country`                    | string  | Limit the search to a specific country (_[ISO_3166-1_alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format_) |
+| `limit`                      | number  | Maximum number of results to be returned (**default: 1**) (_not supported by Google_)                                    |
+| `raw`                        | boolean | Return the raw result                                                                                                    |
+| `params`                     | object  | Params object specific to the provider (**see below**)                                                                   |
 
 ##### coordinates
 
 | Field     | Type   | Description            |
-|-----------|--------|------------------------|
+| --------- | ------ | ---------------------- |
 | latitude  | number | Latitude of the point  |
 | longitude | number | Longitude of the point |
 
@@ -213,16 +213,16 @@ console.log(response)
 
 You can check the official API documentation from providers to see which options you can pass the geocoder
 
--   Google: https://developers.google.com/maps/documentation/geocoding/requests-reverse-geocoding?hl=en
--   Mapbox: https://docs.mapbox.com/api/search/geocoding/#reverse-geocoding
--   Here: https://www.here.com/docs/bundle/geocoding-and-search-api-v7-api-reference/page/index.html#/paths/~1revgeocode/get
+- Google: https://developers.google.com/maps/documentation/geocoding/requests-reverse-geocoding?hl=en
+- Mapbox: https://docs.mapbox.com/api/search/geocoding/#reverse-geocoding
+- Here: https://www.here.com/docs/bundle/geocoding-and-search-api-v7-api-reference/page/index.html#/paths/~1revgeocode/get
 
 #### Results
 
 We always return an array of object with the following fields
 
 | Field            | Type   | Description                                            |
-|------------------|--------|--------------------------------------------------------|
+| ---------------- | ------ | ------------------------------------------------------ |
 | formattedAddress | string | The complete formatted address                         |
 | latitude         | number | The latitude of the result                             |
 | longitude        | number | The longitude of the result                            |
@@ -232,7 +232,7 @@ We always return an array of object with the following fields
 ##### components
 
 | Field        | Type   | Description                                                                                                    |
-|--------------|--------|----------------------------------------------------------------------------------------------------------------|
+| ------------ | ------ | -------------------------------------------------------------------------------------------------------------- |
 | country      | string | The country where is located the result                                                                        |
 | countryCode  | string | The country code of the result ([ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format) |
 | state        | string | The state where is located the result                                                                          |
@@ -245,13 +245,12 @@ We always return an array of object with the following fields
 ##### extra
 
 | Field      | Type   | Description                                                                         |
-|------------|--------|-------------------------------------------------------------------------------------|
+| ---------- | ------ | ----------------------------------------------------------------------------------- |
 | id         | string | The unique identifier of the result provided by the provider                        |
 | bbox       | object | The bounding box of the result                                                      |
 | confidence | number | A number between 0 and 1 indicating how the result location correspond to our query |
 
-
-### Autocomplete 
+### Autocomplete
 
 #### autocomplete(provider, options)
 
@@ -288,17 +287,17 @@ console.log(response)
 */
 ```
 
-| Parameter              | Description                                 |
-| ----------------------- | ------------------------------------------- |
+| Parameter                 | Description                                 |
+| ------------------------- | ------------------------------------------- |
 | `provider` (**required**) | Provider (_google_, _here_, _mapbox_) token |
 | `options` (**required**)  | Options object (**see below**)              |
 
 ##### options
 
 | Parameter               | Type    | Description                                                                                                              |
-|-------------------------|---------|--------------------------------------------------------------------------------------------------------------------------|
+| ----------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------ |
 | `apiKey` (**required**) | string  | Provider access token                                                                                                    |
-| `query` (**required**)  | string  | Partial address in string format (e.g. _Rue du Belvédère 23_)                                   |
+| `query` (**required**)  | string  | Partial address in string format (e.g. _Rue du Belvédère 23_)                                                            |
 | `language`              | string  | Language of the returned result (_[IETF BCP 47](https://en.wikipedia.org/wiki/IETF_language_tag) format_)                |
 | `country`               | string  | Limit the search to a specific country (_[ISO_3166-1_alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format_) |
 | `limit`                 | number  | Maximum number of results to be returned (**default: 1**) (_not supported by Google_)                                    |
@@ -309,16 +308,16 @@ console.log(response)
 
 You can check the official API documentation from providers to see which options you can pass the geocoder
 
--   Google: https://developers.google.com/maps/documentation/places/web-service/autocomplete?hl=en
--   Mapbox: https://docs.mapbox.com/api/search/search-box/#get-suggested-results
--   Here: https://www.here.com/docs/bundle/geocoding-and-search-api-v7-api-reference/page/index.html#/paths/~1autocomplete/get
+- Google: https://developers.google.com/maps/documentation/places/web-service/autocomplete?hl=en
+- Mapbox: https://docs.mapbox.com/api/search/search-box/#get-suggested-results
+- Here: https://www.here.com/docs/bundle/geocoding-and-search-api-v7-api-reference/page/index.html#/paths/~1autocomplete/get
 
 #### Results
 
 We always return an array of object with the following fields
 
 | Field                     | Type   | Description                                            |
-|---------------------------|--------|--------------------------------------------------------|
+| ------------------------- | ------ | ------------------------------------------------------ |
 | formattedAddress          | string | The complete formatted address                         |
 | components (**optional**) | object | The address components (**see below**)                 |
 | extra                     | object | An object with additional informations (**see below**) |
@@ -326,7 +325,7 @@ We always return an array of object with the following fields
 ##### components
 
 | Field        | Type   | Description                                                                                                    |
-|--------------|--------|----------------------------------------------------------------------------------------------------------------|
+| ------------ | ------ | -------------------------------------------------------------------------------------------------------------- |
 | country      | string | The country where is located the result                                                                        |
 | countryCode  | string | The country code of the result ([ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format) |
 | state        | string | The state where is located the result                                                                          |
@@ -338,6 +337,6 @@ We always return an array of object with the following fields
 
 ##### extra
 
-| Field      | Type   | Description                                                                         |
-|------------|--------|-------------------------------------------------------------------------------------|
-| id         | string | The unique identifier of the result provided by the provider                        |
+| Field | Type   | Description                                                  |
+| ----- | ------ | ------------------------------------------------------------ |
+| id    | string | The unique identifier of the result provided by the provider |

@@ -1,5 +1,3 @@
-export const apiResponse = {
+export const apiResponse = {};
 
-}
-
-export const expectedFormattedResult = []
+export const expectedFormattedResult = [];
