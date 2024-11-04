@@ -36,7 +36,7 @@ export type GeocoderUnifiedResult = {
   latitude: number;
   longitude: number;
   components: AddressComponents;
-  extra?: Extra;
+  extra: Extra;
 };
 
 export type AddressComponents = {
@@ -55,9 +55,9 @@ export type AddressComponents = {
 };
 
 export type Extra = {
-  id?: string | number;
-  confidence?: number;
+  id: string;
   bbox?: number[];
+  confidence?: number;
 };
 
 export type AutocompleteUnifiedResult = Partial<
