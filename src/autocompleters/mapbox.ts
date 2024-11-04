@@ -32,7 +32,8 @@ export function formatResult(result: Suggestion) {
   return {
     formattedAddress: result.full_address || result.address || `${result.name} ${result.place_formatted}`,
     components: {
-      streetNumber: result.context.street?.name,
+      streetNumber: result.context.address?.address_number,
+      streetName: result.context.street?.name,
       zipCode: result.context.postcode?.name,
       city: result.context.place?.name,
       region: result.context.region?.name,
