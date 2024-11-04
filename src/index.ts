@@ -7,3 +7,4 @@ const geocode = {
 };
 
 export { geocode, autocomplete };
+export default { geocode, autocomplete };
