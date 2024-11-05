@@ -31,6 +31,14 @@ type Components = {
 
 export async function GoogleGeocode(
   type: GeocodeType,
+  options: (ForwardGeocodeOptions | ReverseGeocodeOptions) & { raw: true },
+): Promise<GoogleResponse>;
+export async function GoogleGeocode(
+  type: GeocodeType,
+  options: (ForwardGeocodeOptions | ReverseGeocodeOptions) & { raw: false },
+): Promise<GeocoderUnifiedResult[]>;
+export async function GoogleGeocode(
+  type: GeocodeType,
   options: ForwardGeocodeOptions | ReverseGeocodeOptions,
 ) {
   const url = providers.google.urls.geocode[type];
@@ -111,7 +119,7 @@ function formatResult(feature: Feature) {
       streetName: route,
       streetNumber,
     },
-    extra,
+    extra
   };
 
   return formatted;
