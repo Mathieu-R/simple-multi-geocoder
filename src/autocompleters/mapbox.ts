@@ -16,6 +16,9 @@ export async function MapboxAutocomplete(
 export async function MapboxAutocomplete(
   options: AutocompleteOptions & { raw: false },
 ): Promise<AutocompleteUnifiedResult[]>;
+export async function MapboxAutocomplete(
+  options: AutocompleteOptions,
+): Promise<MapboxAutocompleteResponse | AutocompleteUnifiedResult[]>;
 export async function MapboxAutocomplete(options: AutocompleteOptions) {
   const url = providers.mapbox.urls.autocomplete;
   const searchParams = getSearchParamsObject(

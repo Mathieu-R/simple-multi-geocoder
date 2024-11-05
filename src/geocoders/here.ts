@@ -24,6 +24,10 @@ export async function HereGeocode(
 export async function HereGeocode(
   type: GeocodeType,
   options: ForwardGeocodeOptions | ReverseGeocodeOptions,
+): Promise<HereResponse | GeocoderUnifiedResult[]>;
+export async function HereGeocode(
+  type: GeocodeType,
+  options: ForwardGeocodeOptions | ReverseGeocodeOptions,
 ) {
   const url = providers.here.urls.geocode[type];
   const searchParamsObject = getSearchParamsObject(

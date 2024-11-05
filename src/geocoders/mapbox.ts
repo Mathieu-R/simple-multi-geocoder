@@ -24,6 +24,10 @@ export async function MapboxGeocode(
 export async function MapboxGeocode(
   type: GeocodeType,
   options: ForwardGeocodeOptions | ReverseGeocodeOptions,
+): Promise<MapboxResponse | GeocoderUnifiedResult[]>;
+export async function MapboxGeocode(
+  type: GeocodeType,
+  options: ForwardGeocodeOptions | ReverseGeocodeOptions,
 ) {
   const url = providers.mapbox.urls.geocode[type];
   const searchParamsObject = getSearchParamsObject(

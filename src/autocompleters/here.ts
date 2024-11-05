@@ -13,6 +13,9 @@ export async function HereAutocomplete(
 export async function HereAutocomplete(
   options: AutocompleteOptions & { raw: false },
 ): Promise<AutocompleteUnifiedResult[]>;
+export async function HereAutocomplete(
+  options: AutocompleteOptions,
+): Promise<HereAutocompleteResponse | AutocompleteUnifiedResult[]>;
 export async function HereAutocomplete(options: AutocompleteOptions) {
   const url = providers.here.urls.autocomplete;
   const searchParams = getSearchParamsObject(

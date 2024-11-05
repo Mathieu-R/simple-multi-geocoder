@@ -39,6 +39,10 @@ export async function GoogleGeocode(
 ): Promise<GeocoderUnifiedResult[]>;
 export async function GoogleGeocode(
   type: GeocodeType,
+  options: (ForwardGeocodeOptions | ReverseGeocodeOptions)
+): Promise<GoogleResponse | GeocoderUnifiedResult[]>;
+export async function GoogleGeocode(
+  type: GeocodeType,
   options: ForwardGeocodeOptions | ReverseGeocodeOptions,
 ) {
   const url = providers.google.urls.geocode[type];
