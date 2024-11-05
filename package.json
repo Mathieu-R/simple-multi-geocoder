@@ -1,6 +1,6 @@
 {
   "name": "simple-multi-geocoder",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "Simple package to geocode and autocomplete with multiple providers.",
   "repository": {
     "url": "git+https://github.com/Mathieu-R/simple-multi-geocoder.git"
