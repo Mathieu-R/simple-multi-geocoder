@@ -16,7 +16,7 @@ import { providers } from "../providers";
 export async function MapboxGeocode(
   type: GeocodeType,
   options: (ForwardGeocodeOptions | ReverseGeocodeOptions) & { raw: true },
-): Promise<MapboxResponse>;
+): Promise<unknown>;
 export async function MapboxGeocode(
   type: GeocodeType,
   options: (ForwardGeocodeOptions | ReverseGeocodeOptions) & { raw: false },
@@ -24,7 +24,7 @@ export async function MapboxGeocode(
 export async function MapboxGeocode(
   type: GeocodeType,
   options: ForwardGeocodeOptions | ReverseGeocodeOptions,
-): Promise<MapboxResponse | GeocoderUnifiedResult[]>;
+): Promise<unknown | GeocoderUnifiedResult[]>;
 export async function MapboxGeocode(
   type: GeocodeType,
   options: ForwardGeocodeOptions | ReverseGeocodeOptions,
@@ -40,7 +40,7 @@ export async function MapboxGeocode(
   }).json();
 
   if (options.raw) {
-    return response;
+    return response as unknown;
   }
 
   return response.features.map((feature) => formatResult(feature));

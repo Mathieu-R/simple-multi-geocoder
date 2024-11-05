@@ -29,15 +29,15 @@ type Components = {
 export async function GoogleGeocode(
   type: GeocodeType,
   options: (ForwardGeocodeOptions | ReverseGeocodeOptions) & { raw: true },
-): Promise<GoogleResponse>;
+): Promise<unknown>;
 export async function GoogleGeocode(
   type: GeocodeType,
   options: (ForwardGeocodeOptions | ReverseGeocodeOptions) & { raw: false },
 ): Promise<GeocoderUnifiedResult[]>;
 export async function GoogleGeocode(
   type: GeocodeType,
-  options: (ForwardGeocodeOptions | ReverseGeocodeOptions)
-): Promise<GoogleResponse | GeocoderUnifiedResult[]>;
+  options: ForwardGeocodeOptions | ReverseGeocodeOptions,
+): Promise<unknown | GeocoderUnifiedResult[]>;
 export async function GoogleGeocode(
   type: GeocodeType,
   options: ForwardGeocodeOptions | ReverseGeocodeOptions,
@@ -53,7 +53,7 @@ export async function GoogleGeocode(
   }).json();
 
   if (options.raw) {
-    return response;
+    return response as unknown;
   }
 
   return response.results.map((feature) => formatResult(feature));

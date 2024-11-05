@@ -12,13 +12,13 @@ import { providers } from "../providers";
 
 export async function GoogleAutocomplete(
   options: AutocompleteOptions & { raw?: true },
-): Promise<GoogleAutocompleteResponse>;
+): Promise<unknown>;
 export async function GoogleAutocomplete(
   options: AutocompleteOptions & { raw?: false },
 ): Promise<AutocompleteUnifiedResult[]>;
 export async function GoogleAutocomplete(
   options: AutocompleteOptions,
-): Promise<GoogleAutocompleteResponse | AutocompleteUnifiedResult[]>;
+): Promise<unknown | AutocompleteUnifiedResult[]>;
 export async function GoogleAutocomplete(options: AutocompleteOptions) {
   const url = providers.google.urls.autocomplete;
   const searchParams = getSearchParamsObject(
@@ -30,7 +30,7 @@ export async function GoogleAutocomplete(options: AutocompleteOptions) {
   }).json();
 
   if (options.raw) {
-    return response;
+    return response as unknown;
   }
 
   return response.predictions.map((item) => formatResult(item));

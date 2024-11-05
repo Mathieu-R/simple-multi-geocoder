@@ -8,6 +8,7 @@ const DEFAULT_OPTIONS = {
   alternatives: false,
   traffic: false,
   renderPath: false,
+  raw: false
 };
 
 export async function routing(

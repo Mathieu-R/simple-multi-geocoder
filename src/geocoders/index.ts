@@ -13,6 +13,8 @@ async function geocode(
   provider: `${Provider}`,
   options: ForwardGeocodeOptions | ReverseGeocodeOptions,
 ) {
+  options.raw = options.raw || false;
+
   if (provider === Provider.GOOGLE) {
     return GoogleGeocode(type, options);
   }

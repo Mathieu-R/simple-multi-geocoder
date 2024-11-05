@@ -12,13 +12,13 @@ import { createURLSearchParams, getSearchParamsObject } from "../utils/fetch";
 
 export async function MapboxAutocomplete(
   options: AutocompleteOptions & { raw: true },
-): Promise<MapboxAutocompleteResponse>;
+): Promise<unknown>;
 export async function MapboxAutocomplete(
   options: AutocompleteOptions & { raw: false },
 ): Promise<AutocompleteUnifiedResult[]>;
 export async function MapboxAutocomplete(
   options: AutocompleteOptions,
-): Promise<MapboxAutocompleteResponse | AutocompleteUnifiedResult[]>;
+): Promise<unknown | AutocompleteUnifiedResult[]>;
 export async function MapboxAutocomplete(options: AutocompleteOptions) {
   const url = providers.mapbox.urls.autocomplete;
   const searchParams = getSearchParamsObject(
@@ -31,7 +31,7 @@ export async function MapboxAutocomplete(options: AutocompleteOptions) {
   }).json();
 
   if (options.raw) {
-    return response;
+    return response as unknown;
   }
 
   return response.suggestions.map((item) => formatResult(item));

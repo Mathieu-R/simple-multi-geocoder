@@ -15,13 +15,13 @@ import { HereRoutingResponse, Route } from "../types/routing/here";
 
 export async function HereRouting(
   options: RoutingOptions & { raw: true },
-): Promise<HereRoutingResponse>;
+): Promise<unknown>;
 export async function HereRouting(
   options: RoutingOptions & { raw: false },
 ): Promise<RoutingUnifiedResult[]>;
 export async function HereRouting(
   options: RoutingOptions,
-): Promise<HereRoutingResponse | RoutingUnifiedResult[]>;
+): Promise<unknown | RoutingUnifiedResult[]>;
 export async function HereRouting(options: RoutingOptions) {
   const url = providers.here.urls.routing;
   let optionsAugmented: RoutingOptionsAugmented = {
@@ -60,7 +60,7 @@ export async function HereRouting(options: RoutingOptions) {
   }).json();
 
   if (options.raw) {
-    return response;
+    return response as unknown;
   }
 
   return Promise.all(response.routes.map((route) => formatResult(route)));

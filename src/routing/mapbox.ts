@@ -20,13 +20,13 @@ const MAPBOX_TRANSPORT_MODE_MAPPING: Record<TransportMode, string> = {
 
 export async function MapboxRouting(
   options: RoutingOptions & { raw: true },
-): Promise<MapboxRoutingResponse>;
+): Promise<unknown>;
 export async function MapboxRouting(
   options: RoutingOptions & { raw: false },
 ): Promise<RoutingUnifiedResult[]>;
 export async function MapboxRouting(
   options: RoutingOptions,
-): Promise<MapboxRoutingResponse | RoutingUnifiedResult[]>;
+): Promise<unknown | RoutingUnifiedResult[]>;
 export async function MapboxRouting(options: RoutingOptions) {
   const transportMode = MAPBOX_TRANSPORT_MODE_MAPPING[options.transportMode];
   let url = `${providers.mapbox.urls.routing}/${transportMode}`;
@@ -64,7 +64,7 @@ export async function MapboxRouting(options: RoutingOptions) {
   }).json();
 
   if (options.raw) {
-    return response;
+    return response as unknown;
   }
 
   if (response.code !== "Ok") {

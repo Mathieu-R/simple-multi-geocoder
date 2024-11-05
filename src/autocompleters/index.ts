@@ -9,6 +9,8 @@ export async function autocomplete(
   provider: `${Provider}`,
   options: AutocompleteOptions,
 ) {
+  options.raw = options.raw || false
+
   if (!options.sessionToken) {
     options.sessionToken = uuidv4();
   }

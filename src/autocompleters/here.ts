@@ -9,13 +9,13 @@ import { providers } from "../providers";
 
 export async function HereAutocomplete(
   options: AutocompleteOptions & { raw: true },
-): Promise<HereAutocompleteResponse>;
+): Promise<unknown>;
 export async function HereAutocomplete(
   options: AutocompleteOptions & { raw: false },
 ): Promise<AutocompleteUnifiedResult[]>;
 export async function HereAutocomplete(
   options: AutocompleteOptions,
-): Promise<HereAutocompleteResponse | AutocompleteUnifiedResult[]>;
+): Promise<unknown | AutocompleteUnifiedResult[]>;
 export async function HereAutocomplete(options: AutocompleteOptions) {
   const url = providers.here.urls.autocomplete;
   const searchParams = getSearchParamsObject(
@@ -27,7 +27,7 @@ export async function HereAutocomplete(options: AutocompleteOptions) {
   }).json();
 
   if (options.raw) {
-    return response;
+    return response as unknown;
   }
 
   return response.items.map((item) => formatResult(item));

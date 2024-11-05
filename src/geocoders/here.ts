@@ -16,7 +16,7 @@ import { createURLSearchParams, getSearchParamsObject } from "../utils/fetch";
 export async function HereGeocode(
   type: GeocodeType,
   options: (ForwardGeocodeOptions | ReverseGeocodeOptions) & { raw: true },
-): Promise<HereResponse>;
+): Promise<unknown>;
 export async function HereGeocode(
   type: GeocodeType,
   options: (ForwardGeocodeOptions | ReverseGeocodeOptions) & { raw: false },
@@ -24,7 +24,7 @@ export async function HereGeocode(
 export async function HereGeocode(
   type: GeocodeType,
   options: ForwardGeocodeOptions | ReverseGeocodeOptions,
-): Promise<HereResponse | GeocoderUnifiedResult[]>;
+): Promise<unknown | GeocoderUnifiedResult[]>;
 export async function HereGeocode(
   type: GeocodeType,
   options: ForwardGeocodeOptions | ReverseGeocodeOptions,
@@ -40,7 +40,7 @@ export async function HereGeocode(
   }).json();
 
   if (options.raw) {
-    return response;
+    return response as unknown;
   }
 
   return response.items.map((feature) => formatResult(feature));
