@@ -1,5 +1,6 @@
 import { Provider } from "../providers";
 import {
+  AutocompleteUnifiedResult,
   ForwardGeocodeOptions,
   GeocodeType,
   ReverseGeocodeOptions,
@@ -7,6 +8,8 @@ import {
 import { GoogleGeocode } from "./google";
 import { HereGeocode } from "./here";
 import { MapboxGeocode } from "./mapbox";
+
+
 
 async function geocode(
   type: GeocodeType,
@@ -32,11 +35,43 @@ async function geocode(
 
 export async function forward(
   provider: `${Provider}`,
+  options: ForwardGeocodeOptions & { raw: true },
+): Promise<unknown>;
+export async function forward(
+  provider: `${Provider}`,
+  options: ForwardGeocodeOptions & { raw: false },
+): Promise<AutocompleteUnifiedResult[]>;
+export async function forward(
+  provider: `${Provider}`,
+  options: Omit<ForwardGeocodeOptions, "raw">,
+): Promise<AutocompleteUnifiedResult[]>;
+export async function forward(
+  provider: `${Provider}`,
+  options: ForwardGeocodeOptions,
+): Promise<unknown | AutocompleteUnifiedResult[]>;
+export async function forward(
+  provider: `${Provider}`,
   options: ForwardGeocodeOptions,
 ) {
   return geocode("forward", provider, options);
 }
 
+export async function reverse(
+  provider: `${Provider}`,
+  options: ReverseGeocodeOptions & { raw: true },
+): Promise<unknown>;
+export async function reverse(
+  provider: `${Provider}`,
+  options: ReverseGeocodeOptions & { raw: false },
+): Promise<AutocompleteUnifiedResult[]>;
+export async function reverse(
+  provider: `${Provider}`,
+  options: Omit<ReverseGeocodeOptions, "raw">,
+): Promise<AutocompleteUnifiedResult[]>;
+export async function reverse(
+  provider: `${Provider}`,
+  options: ReverseGeocodeOptions,
+): Promise<unknown | AutocompleteUnifiedResult[]>;
 export async function reverse(
   provider: `${Provider}`,
   options: ReverseGeocodeOptions,

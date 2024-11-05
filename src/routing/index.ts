@@ -1,5 +1,5 @@
 import { Provider } from "../providers";
-import { RoutingOptions, TransportMode } from "../types/common";
+import { RoutingOptions, RoutingUnifiedResult, TransportMode } from "../types/common";
 import { HereRouting } from "./here";
 import { MapboxRouting } from "./mapbox";
 
@@ -11,6 +11,22 @@ const DEFAULT_OPTIONS = {
   raw: false
 };
 
+export async function routing(
+  provider: `${Provider}`,
+  options: RoutingOptions & { raw: true },
+): Promise<unknown>;
+export async function routing(
+  provider: `${Provider}`,
+  options: RoutingOptions & { raw: false },
+): Promise<RoutingUnifiedResult[]>;
+export async function routing(
+  provider: `${Provider}`,
+  options: Omit<RoutingOptions, "raw">,
+): Promise<RoutingUnifiedResult[]>;
+export async function routing(
+  provider: `${Provider}`,
+  options: RoutingOptions,
+): Promise<unknown | RoutingUnifiedResult[]>;
 export async function routing(
   provider: `${Provider}`,
   options: RoutingOptions,

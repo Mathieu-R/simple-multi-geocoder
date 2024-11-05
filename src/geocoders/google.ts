@@ -28,18 +28,6 @@ type Components = {
 
 export async function GoogleGeocode(
   type: GeocodeType,
-  options: (ForwardGeocodeOptions | ReverseGeocodeOptions) & { raw: true },
-): Promise<unknown>;
-export async function GoogleGeocode(
-  type: GeocodeType,
-  options: (ForwardGeocodeOptions | ReverseGeocodeOptions) & { raw: false },
-): Promise<GeocoderUnifiedResult[]>;
-export async function GoogleGeocode(
-  type: GeocodeType,
-  options: ForwardGeocodeOptions | ReverseGeocodeOptions,
-): Promise<unknown | GeocoderUnifiedResult[]>;
-export async function GoogleGeocode(
-  type: GeocodeType,
   options: ForwardGeocodeOptions | ReverseGeocodeOptions,
 ) {
   const url = providers.google.urls.geocode[type];

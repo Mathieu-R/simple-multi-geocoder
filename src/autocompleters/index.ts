@@ -3,8 +3,24 @@ import { Provider } from "../providers";
 import { GoogleAutocomplete } from "./google";
 import { HereAutocomplete } from "./here";
 import { MapboxAutocomplete } from "./mapbox";
-import { AutocompleteOptions } from "../types/common";
+import { AutocompleteOptions, AutocompleteUnifiedResult } from "../types/common";
 
+export async function autocomplete(
+  provider: `${Provider}`,
+  options: AutocompleteOptions & { raw: true },
+): Promise<unknown>;
+export async function autocomplete(
+  provider: `${Provider}`,
+  options: AutocompleteOptions & { raw: false },
+): Promise<AutocompleteUnifiedResult[]>;
+export async function autocomplete(
+  provider: `${Provider}`,
+  options: Omit<AutocompleteOptions, "raw">,
+): Promise<AutocompleteUnifiedResult[]>;
+export async function autocomplete(
+  provider: `${Provider}`,
+  options: AutocompleteOptions,
+): Promise<unknown | AutocompleteUnifiedResult[]>;
 export async function autocomplete(
   provider: `${Provider}`,
   options: AutocompleteOptions,

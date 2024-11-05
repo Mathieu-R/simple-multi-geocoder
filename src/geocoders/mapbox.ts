@@ -15,18 +15,6 @@ import { providers } from "../providers";
 
 export async function MapboxGeocode(
   type: GeocodeType,
-  options: (ForwardGeocodeOptions | ReverseGeocodeOptions) & { raw: true },
-): Promise<unknown>;
-export async function MapboxGeocode(
-  type: GeocodeType,
-  options: (ForwardGeocodeOptions | ReverseGeocodeOptions) & { raw: false },
-): Promise<GeocoderUnifiedResult[]>;
-export async function MapboxGeocode(
-  type: GeocodeType,
-  options: ForwardGeocodeOptions | ReverseGeocodeOptions,
-): Promise<unknown | GeocoderUnifiedResult[]>;
-export async function MapboxGeocode(
-  type: GeocodeType,
   options: ForwardGeocodeOptions | ReverseGeocodeOptions,
 ) {
   const url = providers.mapbox.urls.geocode[type];
