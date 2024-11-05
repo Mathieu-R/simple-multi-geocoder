@@ -11,7 +11,7 @@ import {
 } from "../types/common";
 import { Feature, HereResponse } from "../types/geocoders/here";
 import { providers } from "../providers";
-import { createURLSearchParams, getSearchParamsObject } from "../utils";
+import { createURLSearchParams, getSearchParamsObject } from "../utils/fetch";
 
 export async function HereGeocode(
   type: GeocodeType,

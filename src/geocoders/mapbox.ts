@@ -10,7 +10,7 @@ import {
   ReverseGeocodeOptions,
 } from "../types/common";
 import { Feature, MapboxResponse, MatchCode } from "../types/geocoders/mapbox";
-import { createURLSearchParams, getSearchParamsObject } from "../utils";
+import { createURLSearchParams, getSearchParamsObject } from "../utils/fetch";
 import { providers } from "../providers";
 
 export async function MapboxGeocode(

@@ -1,5 +1,5 @@
-import { AllOptions, OptionMapping, Params } from "./types/common";
-import { DEFAULT_LIMIT } from "./config";
+import { AllOptions, OptionMapping, Params } from "../types/common";
+import { DEFAULT_LIMIT } from "../config";
 
 export function createURLSearchParams(qs: Record<string, any> = {}) {
   return new URLSearchParams(JSON.parse(JSON.stringify(qs)));
@@ -10,7 +10,7 @@ export function getSearchParamsObject(
   optionsMapping: OptionMapping[],
   level: number = 0,
 ): Params {
-  level = level + 1
+  level = level + 1;
 
   if (level === 1) {
     options.limit = options.limit || DEFAULT_LIMIT;
@@ -36,7 +36,7 @@ export function getSearchParamsObject(
       ? templateFn(options[option])
       : options[option];
 
-    return prev
+    return prev;
   }, {} as Params);
 
   if (level === 1 && options.params) {
@@ -48,12 +48,4 @@ export function getSearchParamsObject(
 
 export function getError(httpStatus: number, message = "Error while fetching") {
   return new Error(`${message}: status=${httpStatus}`);
-}
-
-export function snakeToCamel(str: string) {
-  return str
-    .toLowerCase()
-    .replace(/([-_][a-z])/g, (group) =>
-      group.toUpperCase().replace("-", "").replace("_", ""),
-    );
 }

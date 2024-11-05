@@ -1,5 +1,5 @@
 import ky from "ky";
-import { createURLSearchParams, getSearchParamsObject } from "../utils";
+import { createURLSearchParams, getSearchParamsObject } from "../utils/fetch";
 import {
   AutocompleteOptions,
   AutocompleteUnifiedResult,

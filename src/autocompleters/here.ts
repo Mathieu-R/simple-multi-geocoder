@@ -3,7 +3,7 @@ import {
   AutocompleteOptions,
   AutocompleteUnifiedResult,
 } from "../types/common";
-import { createURLSearchParams, getSearchParamsObject } from "../utils";
+import { createURLSearchParams, getSearchParamsObject } from "../utils/fetch";
 import { HereAutocompleteResponse, Item } from "../types/autocompleters/here";
 import { providers } from "../providers";
 

@@ -3,6 +3,20 @@ import { Provider } from "../providers";
 export type Params = Record<string, string | number | boolean>;
 
 export type GeocodeType = "forward" | "reverse";
+export type TransportMode = "car" | "bicycle" | "pedestrian";
+
+export type RoutingMarkers = {
+  origin: {
+    // ISO 8601
+    time?: string;
+    coordinates: Coordinates;
+  };
+  destination: {
+    // ISO 8601
+    time?: string;
+    coordinates: Coordinates;
+  };
+};
 
 export type Coordinates = {
   latitude: number;
@@ -27,9 +41,33 @@ export type AutocompleteOptions = ForwardGeocodeOptions & {
   sessionToken?: string;
 };
 
+export type RoutingOptions = Pick<
+  ForwardGeocodeOptions,
+  "apiKey" | "raw" | "params"
+> & {
+  markers: RoutingMarkers;
+  transportMode?: TransportMode;
+  alternatives?: boolean;
+  renderPath?: boolean;
+  traffic?: boolean;
+};
+
+export type RoutingOptionsAugmented = Pick<
+  RoutingOptions,
+  "apiKey" | "transportMode" | "alternatives" | "renderPath" | "params"
+  > & {
+  origin?: Coordinates;
+  destination?: Coordinates;
+  // ISO 8601
+  departAt?: string;
+  arriveAt?: string;
+  geometries?: string;
+};
+
 export type AllOptions = ForwardGeocodeOptions &
   ReverseGeocodeOptions &
-  AutocompleteOptions;
+  AutocompleteOptions &
+  RoutingOptions;
 
 export type GeocoderUnifiedResult = {
   formattedAddress: string;
@@ -82,6 +120,7 @@ type UrlConfig = {
     reverse: string;
   };
   autocomplete: string;
+  routing: string;
 };
 
 type OptionConfig = {
@@ -90,10 +129,38 @@ type OptionConfig = {
     reverse: OptionMapping[];
   };
   autocomplete: OptionMapping[];
+  routing: OptionMapping[];
 };
 
 export type OptionMapping = {
   option: keyof Omit<AllOptions, "raw" | "params"> | string;
   mappedParam: string | OptionMapping[];
   templateFn?: (arg: any) => string;
+};
+
+export type RoutingUnifiedResult = {
+  // ISO 8601
+  departureTime: string;
+  arrivalTime: string;
+  distance: {
+    // in meters
+    value: number;
+    text: string;
+  };
+  duration: {
+    // in seconds
+    value: number;
+    text: string;
+  };
+  typicalDuration?: {
+    // in seconds
+    value: number;
+    text: string;
+  };
+  path?: GeoJSON;
+};
+
+type GeoJSON = {
+  type: string;
+  coordinates: number[][];
 };
