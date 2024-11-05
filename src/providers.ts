@@ -72,6 +72,7 @@ export const providers: ProvidersConfig = {
       },
       autocomplete:
         "https://maps.googleapis.com/maps/api/place/autocomplete/json",
+      routing: "",
     },
     options: {
       geocode: {
@@ -103,6 +104,7 @@ export const providers: ProvidersConfig = {
           mappedParam: "sessiontoken",
         },
       ],
+      routing: [],
     },
   },
   here: {
@@ -112,6 +114,7 @@ export const providers: ProvidersConfig = {
         reverse: "https://reverse.search.hereapi.com/v1/geocode",
       },
       autocomplete: "https://autocomplete.search.hereapi.com/v1/autocomplete",
+      routing: "https://router.hereapi.com/v8/routes",
     },
     options: {
       geocode: {
@@ -139,6 +142,50 @@ export const providers: ProvidersConfig = {
           mappedParam: "q",
         },
       ],
+      routing: [
+        {
+          option: "apiKey",
+          mappedParam: "apiKey",
+        },
+        {
+          option: "origin",
+          mappedParam: "origin",
+          templateFn: (coordinates: Coordinates) =>
+            `${coordinates.latitude},${coordinates.longitude}`,
+        },
+        {
+          option: "destination",
+          mappedParam: "destination",
+          templateFn: (coordinates: Coordinates) =>
+            `${coordinates.latitude},${coordinates.longitude}`,
+        },
+        {
+          option: "departAt",
+          mappedParam: "departureTime",
+        },
+        {
+          option: "arriveAt",
+          mappedParam: "arrivalTime",
+        },
+        {
+          option: "transportMode",
+          mappedParam: "transportMode",
+        },
+        {
+          option: "alternatives",
+          mappedParam: "alternatives",
+          // we look for 2 alternative paths if alternatives = true
+          templateFn: (alternatives: boolean) => (alternatives ? "2" : "0"),
+        },
+        {
+          option: "return",
+          mappedParam: "renderPath",
+          templateFn: (renderPath: boolean) =>
+            renderPath
+              ? ["polyline", "travelSummary"].join(",")
+              : "travelSummary",
+        },
+      ],
     },
   },
   mapbox: {
@@ -148,6 +195,7 @@ export const providers: ProvidersConfig = {
         reverse: "https://api.mapbox.com/search/geocode/v6/reverse",
       },
       autocomplete: "https://api.mapbox.com/search/searchbox/v1/suggest",
+      routing: "https://api.mapbox.com/directions/v5/mapbox",
     },
     options: {
       geocode: {
@@ -184,6 +232,24 @@ export const providers: ProvidersConfig = {
         {
           option: "sessionToken",
           mappedParam: "session_token",
+        },
+      ],
+      routing: [
+        {
+          option: "apiKey",
+          mappedParam: "access_token",
+        },
+        {
+          option: "alternatives",
+          mappedParam: "alternatives",
+        },
+        {
+          option: "departAt",
+          mappedParam: "depart_at",
+        },
+        {
+          option: "geometries",
+          mappedParam: "geometries",
         },
       ],
     },

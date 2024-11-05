@@ -8,7 +8,7 @@ import {
   AutocompleteOptions,
   AutocompleteUnifiedResult,
 } from "../types/common";
-import { createURLSearchParams, getSearchParamsObject } from "../utils";
+import { createURLSearchParams, getSearchParamsObject } from "../utils/fetch";
 
 export async function MapboxAutocomplete(options: AutocompleteOptions) {
   const url = providers.mapbox.urls.autocomplete;

@@ -1,11 +1,8 @@
 // https://developers.google.com/maps/documentation/geocoding/requests-geocoding?hl=fr
 
 import ky from "ky";
-import {
-  createURLSearchParams,
-  getSearchParamsObject,
-  snakeToCamel,
-} from "../utils";
+import { createURLSearchParams, getSearchParamsObject } from "../utils/fetch";
+import { snakeToCamel } from "../utils/helpers";
 import { Feature, GoogleResponse } from "../types/geocoders/google";
 import {
   ForwardGeocodeOptions,
