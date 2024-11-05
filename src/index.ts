@@ -1,16 +1,18 @@
 import { forward, reverse } from "./geocoders";
 import { autocomplete } from "./autocompleters";
-import { GeocoderUnifiedResult, AutocompleteUnifiedResult } from './types/common';
+import { routing } from "./routing"
+import { GeocoderUnifiedResult, AutocompleteUnifiedResult, RoutingUnifiedResult } from './types/common';
 
 const geocode = {
   forward,
   reverse,
 };
 
-export { geocode, autocomplete };
-export default { geocode, autocomplete };
+export { geocode, autocomplete, routing };
+export default { geocode, autocomplete, routing };
 
 export type {
   GeocoderUnifiedResult,
-  AutocompleteUnifiedResult
+  AutocompleteUnifiedResult,
+  RoutingUnifiedResult
 }

@@ -24,6 +24,9 @@ export async function MapboxRouting(
 export async function MapboxRouting(
   options: RoutingOptions & { raw: false },
 ): Promise<RoutingUnifiedResult[]>;
+export async function MapboxRouting(
+  options: RoutingOptions,
+): Promise<MapboxRoutingResponse | RoutingUnifiedResult[]>;
 export async function MapboxRouting(options: RoutingOptions) {
   const transportMode = MAPBOX_TRANSPORT_MODE_MAPPING[options.transportMode];
   let url = `${providers.mapbox.urls.routing}/${transportMode}`;

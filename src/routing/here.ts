@@ -19,6 +19,9 @@ export async function HereRouting(
 export async function HereRouting(
   options: RoutingOptions & { raw: false },
 ): Promise<RoutingUnifiedResult[]>;
+export async function HereRouting(
+  options: RoutingOptions,
+): Promise<HereRoutingResponse | RoutingUnifiedResult[]>;
 export async function HereRouting(options: RoutingOptions) {
   const url = providers.here.urls.routing;
   let optionsAugmented: RoutingOptionsAugmented = {
