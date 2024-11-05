@@ -10,6 +10,15 @@ import {
 } from "../types/autocompleters/google";
 import { providers } from "../providers";
 
+export async function GoogleAutocomplete(
+  options: AutocompleteOptions & { raw?: true },
+): Promise<GoogleAutocompleteResponse>;
+export async function GoogleAutocomplete(
+  options: AutocompleteOptions & { raw?: false },
+): Promise<AutocompleteUnifiedResult[]>;
+export async function GoogleAutocomplete(
+  options: AutocompleteOptions,
+): Promise<GoogleAutocompleteResponse | AutocompleteUnifiedResult[]>;
 export async function GoogleAutocomplete(options: AutocompleteOptions) {
   const url = providers.google.urls.autocomplete;
   const searchParams = getSearchParamsObject(

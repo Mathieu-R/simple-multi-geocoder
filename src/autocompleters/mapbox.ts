@@ -10,6 +10,15 @@ import {
 } from "../types/common";
 import { createURLSearchParams, getSearchParamsObject } from "../utils";
 
+export async function MapboxAutocomplete(
+  options: AutocompleteOptions & { raw: true },
+): Promise<MapboxAutocompleteResponse>;
+export async function MapboxAutocomplete(
+  options: AutocompleteOptions & { raw: false },
+): Promise<AutocompleteUnifiedResult[]>;
+export async function MapboxAutocomplete(
+  options: AutocompleteOptions,
+): Promise<MapboxAutocompleteResponse | AutocompleteUnifiedResult[]>;
 export async function MapboxAutocomplete(options: AutocompleteOptions) {
   const url = providers.mapbox.urls.autocomplete;
   const searchParams = getSearchParamsObject(
@@ -30,7 +39,10 @@ export async function MapboxAutocomplete(options: AutocompleteOptions) {
 
 export function formatResult(result: Suggestion) {
   return {
-    formattedAddress: result.full_address || result.address || `${result.name} ${result.place_formatted}`,
+    formattedAddress:
+      result.full_address ||
+      result.address ||
+      `${result.name} ${result.place_formatted}`,
     components: {
       streetNumber: result.context.address?.address_number,
       streetName: result.context.street?.name,
