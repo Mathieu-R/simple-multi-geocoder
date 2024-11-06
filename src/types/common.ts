@@ -23,14 +23,17 @@ export type Coordinates = {
   longitude: number;
 };
 
-export type ForwardGeocodeOptions = {
+export type CommonOptions = {
   apiKey: string;
+  raw?: boolean;
+  params?: Params;
+};
+
+export type ForwardGeocodeOptions = CommonOptions & {
   query: string;
   language?: string;
   country?: string;
   limit?: number;
-  raw?: boolean;
-  params?: Params;
 };
 
 export type ReverseGeocodeOptions = Omit<ForwardGeocodeOptions, "query"> & {
@@ -41,10 +44,7 @@ export type AutocompleteOptions = ForwardGeocodeOptions & {
   sessionToken?: string;
 };
 
-export type RoutingOptions = Pick<
-  ForwardGeocodeOptions,
-  "apiKey" | "raw" | "params"
-> & {
+export type RoutingOptions = CommonOptions & {
   markers: RoutingMarkers;
   transportMode?: TransportMode;
   alternatives?: boolean;
@@ -55,7 +55,7 @@ export type RoutingOptions = Pick<
 export type RoutingOptionsAugmented = Pick<
   RoutingOptions,
   "apiKey" | "transportMode" | "alternatives" | "renderPath" | "params"
-  > & {
+> & {
   origin?: Coordinates;
   destination?: Coordinates;
   // ISO 8601
@@ -64,10 +64,16 @@ export type RoutingOptionsAugmented = Pick<
   geometries?: string;
 };
 
+export type LookupOptions = CommonOptions & {
+  id: string;
+  sessionToken?: string;
+};
+
 export type AllOptions = ForwardGeocodeOptions &
   ReverseGeocodeOptions &
   AutocompleteOptions &
-  RoutingOptions;
+  RoutingOptions &
+  LookupOptions;
 
 export type GeocoderUnifiedResult = {
   formattedAddress: string;
@@ -121,6 +127,7 @@ type UrlConfig = {
   };
   autocomplete: string;
   routing: string;
+  lookup: string;
 };
 
 type OptionConfig = {
@@ -130,6 +137,7 @@ type OptionConfig = {
   };
   autocomplete: OptionMapping[];
   routing: OptionMapping[];
+  lookup: OptionMapping[];
 };
 
 export type OptionMapping = {

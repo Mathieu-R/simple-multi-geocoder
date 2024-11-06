@@ -73,6 +73,7 @@ export const providers: ProvidersConfig = {
       autocomplete:
         "https://maps.googleapis.com/maps/api/place/autocomplete/json",
       routing: "",
+      lookup: ""
     },
     options: {
       geocode: {
@@ -105,6 +106,7 @@ export const providers: ProvidersConfig = {
         },
       ],
       routing: [],
+      lookup: []
     },
   },
   here: {
@@ -115,6 +117,7 @@ export const providers: ProvidersConfig = {
       },
       autocomplete: "https://autocomplete.search.hereapi.com/v1/autocomplete",
       routing: "https://router.hereapi.com/v8/routes",
+      lookup: "https://lookup.search.hereapi.com/v1/lookup",
     },
     options: {
       geocode: {
@@ -186,6 +189,20 @@ export const providers: ProvidersConfig = {
               : "travelSummary",
         },
       ],
+      lookup: [
+        {
+          option: "apiKey",
+          mappedParam: "apiKey",
+        },
+        {
+          option: "id",
+          mappedParam: "id",
+        },
+        {
+          option: "language",
+          mappedParam: "lang",
+        },
+      ],
     },
   },
   mapbox: {
@@ -196,6 +213,7 @@ export const providers: ProvidersConfig = {
       },
       autocomplete: "https://api.mapbox.com/search/searchbox/v1/suggest",
       routing: "https://api.mapbox.com/directions/v5/mapbox",
+      lookup: "https://api.mapbox.com/search/searchbox/v1/retrieve",
     },
     options: {
       geocode: {
@@ -250,6 +268,20 @@ export const providers: ProvidersConfig = {
         {
           option: "geometries",
           mappedParam: "geometries",
+        },
+      ],
+      lookup: [
+        {
+          option: "apiKey",
+          mappedParam: "access_token",
+        },
+        {
+          option: "sessionToken",
+          mappedParam: "session_token",
+        },
+        {
+          option: "language",
+          mappedParam: "language",
         },
       ],
     },
