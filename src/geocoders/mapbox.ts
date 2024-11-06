@@ -53,7 +53,7 @@ export function formatResult(result: Feature) {
     longitude: properties.coordinates.longitude,
     components: {
       streetNumber: context.address?.address_number,
-      streetName: context.address?.street_name,
+      streetName: context.address? context.address.street_name : context.street?.name,
       zipCode: context.postcode?.name,
       state: context.region?.name,
       city: context.place?.name,
