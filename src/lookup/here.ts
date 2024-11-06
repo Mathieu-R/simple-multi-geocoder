@@ -5,10 +5,10 @@ import { getSearchParamsObject } from "../utils/fetch";
 import countries from 'i18n-iso-countries';
 
 export async function HereLookup(options: LookupOptions) {
-  const url = providers.here.urls.routing;
+  const url = providers.here.urls.lookup;
   const searchParams = getSearchParamsObject(
     options,
-    providers.here.options.routing,
+    providers.here.options.lookup,
   );
 
   const response = await ky<any>(url, {

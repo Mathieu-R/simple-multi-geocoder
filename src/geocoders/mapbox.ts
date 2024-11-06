@@ -52,14 +52,8 @@ export function formatResult(result: Feature) {
     latitude: properties.coordinates.latitude,
     longitude: properties.coordinates.longitude,
     components: {
-      streetNumber:
-        properties.feature_type === "address"
-          ? context.address?.address_number
-          : undefined,
-      streetName:
-        properties.feature_type === "address"
-          ? context.address?.street_name
-          : undefined,
+      streetNumber: context.address?.address_number,
+      streetName: context.address?.street_name,
       zipCode: context.postcode?.name,
       state: context.region?.name,
       city: context.place?.name,

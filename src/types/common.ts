@@ -66,6 +66,7 @@ export type RoutingOptionsAugmented = Pick<
 
 export type LookupOptions = CommonOptions & {
   id: string;
+  language?: string;
   sessionToken?: string;
 };
 

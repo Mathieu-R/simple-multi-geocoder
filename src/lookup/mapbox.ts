@@ -6,8 +6,8 @@ import { getSearchParamsObject } from "../utils/fetch";
 export async function MapboxLookup(
   options: LookupOptions
 ) {
-  const url = providers.mapbox.urls.routing
-  const searchParams = getSearchParamsObject(options, providers.mapbox.options.routing)
+  const url = providers.mapbox.urls.lookup
+  const searchParams = getSearchParamsObject(options, providers.mapbox.options.lookup)
 
   const response = await ky<any>(`${url}/${options.id}`, {
     searchParams
@@ -29,14 +29,8 @@ export function formatResult(result: any) {
     latitude: properties.coordinates.latitude,
     longitude: properties.coordinates.longitude,
     components: {
-      streetNumber:
-        properties.feature_type === "address"
-          ? context.address?.address_number
-          : undefined,
-      streetName:
-        properties.feature_type === "address"
-          ? context.address?.street_name
-          : undefined,
+      streetNumber: context.address?.address_number,
+      streetName: context.address?.street_name,
       zipCode: context.postcode?.name,
       state: context.region?.name,
       city: context.place?.name,
