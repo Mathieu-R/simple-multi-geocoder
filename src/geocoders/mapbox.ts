@@ -37,7 +37,8 @@ export async function MapboxGeocode(
 function isTrustable(matchCode: MatchCode) {
   return Number(
     matchCode.address_number === "matched" &&
-      matchCode.street === "matched" &&
+      // streetname matching is bugged in Mapbox's geocoding API
+      //matchCode.street === "matched" &&
       matchCode.postcode === "matched" &&
       matchCode.country === "matched",
   );
