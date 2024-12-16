@@ -18,7 +18,7 @@ export async function HereAutocomplete(options: AutocompleteOptions) {
   }).json();
 
   if (options.raw) {
-    return response as unknown;
+    return response as any;
   }
 
   return response.items.map((item) => formatResult(item));

@@ -36,7 +36,7 @@ async function geocode(
 export async function forward(
   provider: `${Provider}`,
   options: ForwardGeocodeOptions & { raw: true },
-): Promise<unknown>;
+): Promise<any>;
 export async function forward(
   provider: `${Provider}`,
   options: ForwardGeocodeOptions & { raw: false },
@@ -48,7 +48,7 @@ export async function forward(
 export async function forward(
   provider: `${Provider}`,
   options: ForwardGeocodeOptions,
-): Promise<unknown | GeocoderUnifiedResult[]>;
+): Promise<any | GeocoderUnifiedResult[]>;
 export async function forward(
   provider: `${Provider}`,
   options: ForwardGeocodeOptions,

@@ -22,7 +22,7 @@ export async function MapboxAutocomplete(options: AutocompleteOptions) {
   }).json();
 
   if (options.raw) {
-    return response as unknown;
+    return response as any;
   }
 
   return response.suggestions.map((item) => formatResult(item));

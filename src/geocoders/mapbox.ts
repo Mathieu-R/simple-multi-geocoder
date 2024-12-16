@@ -28,7 +28,7 @@ export async function MapboxGeocode(
   }).json();
 
   if (options.raw) {
-    return response as unknown;
+    return response as any;
   }
 
   return response.features.map((feature) => formatResult(feature));

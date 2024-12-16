@@ -8,7 +8,7 @@ import { AutocompleteOptions, AutocompleteUnifiedResult } from "../types/common"
 export async function autocomplete(
   provider: `${Provider}`,
   options: AutocompleteOptions & { raw: true },
-): Promise<unknown>;
+): Promise<any>;
 export async function autocomplete(
   provider: `${Provider}`,
   options: AutocompleteOptions & { raw: false },
@@ -20,7 +20,7 @@ export async function autocomplete(
 export async function autocomplete(
   provider: `${Provider}`,
   options: AutocompleteOptions,
-): Promise<unknown | AutocompleteUnifiedResult[]>;
+): Promise<any | AutocompleteUnifiedResult[]>;
 export async function autocomplete(
   provider: `${Provider}`,
   options: AutocompleteOptions,

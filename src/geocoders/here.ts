@@ -28,7 +28,7 @@ export async function HereGeocode(
   }).json();
 
   if (options.raw) {
-    return response as unknown;
+    return response as any;
   }
 
   return response.items.map((feature) => formatResult(feature));

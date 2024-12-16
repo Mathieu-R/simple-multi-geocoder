@@ -41,7 +41,7 @@ export async function GoogleGeocode(
   }).json();
 
   if (options.raw) {
-    return response as unknown;
+    return response as any;
   }
 
   return response.results.map((feature) => formatResult(feature));
