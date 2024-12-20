@@ -43,11 +43,17 @@ export async function HereRouting(options: RoutingOptions) {
     }
   }
 
+  const headers = new Headers();
+  if (options.bearerToken) {
+    headers.set("Authorization", `Bearer ${options.bearerToken}`);
+  }
+
   const response = await ky<HereRoutingResponse>(url, {
     searchParams: getSearchParamsObject(
       optionsAugmented,
       providers.here.options.routing,
     ),
+    headers,
   }).json();
 
   if (options.raw) {

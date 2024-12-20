@@ -13,8 +13,15 @@ export async function HereAutocomplete(options: AutocompleteOptions) {
     options,
     providers.here.options.autocomplete,
   );
+
+  const headers = new Headers();
+  if (options.bearerToken) {
+    headers.set("Authorization", `Bearer ${options.bearerToken}`);
+  }
+
   const response = await ky<HereAutocompleteResponse>(url, {
     searchParams: createURLSearchParams(searchParams),
+    headers,
   }).json();
 
   if (options.raw) {

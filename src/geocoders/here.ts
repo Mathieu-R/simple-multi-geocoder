@@ -23,8 +23,14 @@ export async function HereGeocode(
     providers.here.options.geocode[type],
   );
 
+  const headers = new Headers();
+  if (options.bearerToken) {
+    headers.set("Authorization", `Bearer ${options.bearerToken}`);
+  }
+
   const response = await ky<HereResponse>(url, {
     searchParams: createURLSearchParams(searchParamsObject),
+    headers,
   }).json();
 
   if (options.raw) {

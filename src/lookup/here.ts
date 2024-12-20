@@ -11,8 +11,14 @@ export async function HereLookup(options: LookupOptions) {
     providers.here.options.lookup,
   );
 
+  const headers = new Headers();
+  if (options.bearerToken) {
+    headers.set("Authorization", `Bearer ${options.bearerToken}`);
+  }
+
   const response = await ky<any>(url, {
     searchParams,
+    headers,
   }).json();
 
   if (options.raw) {
