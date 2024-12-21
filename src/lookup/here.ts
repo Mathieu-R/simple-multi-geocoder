@@ -12,8 +12,9 @@ export async function HereLookup(options: LookupOptions) {
   );
 
   const headers = new Headers();
-  if (options.bearerToken) {
-    headers.set("Authorization", `Bearer ${options.bearerToken}`);
+
+  if (options.credentials.bearerToken) {
+    headers.set("Authorization", `Bearer ${options.credentials.bearerToken}`);
   }
 
   const response = await ky<any>(url, {

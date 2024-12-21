@@ -7,6 +7,7 @@ import {
 
 test("format autocomplete api response", () => {
   const results = apiAutocompleteResponse.suggestions.map((response) =>
+    // @ts-expect-error
     formatResult(response),
   );
 

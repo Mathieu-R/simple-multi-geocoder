@@ -24,10 +24,14 @@ export type Coordinates = {
 };
 
 export type CommonOptions = {
-  apiKey?: string;
-  bearerToken?: string;
+  credentials: Credentials;
   raw?: boolean;
   params?: Params;
+};
+
+export type Credentials = {
+  apiKey?: string;
+  bearerToken?: string;
 };
 
 export type ForwardGeocodeOptions = CommonOptions & {
@@ -55,7 +59,7 @@ export type RoutingOptions = CommonOptions & {
 
 export type RoutingOptionsAugmented = Pick<
   RoutingOptions,
-  "apiKey" | "transportMode" | "alternatives" | "renderPath" | "params"
+  "credentials" | "transportMode" | "alternatives" | "renderPath" | "params"
 > & {
   origin?: Coordinates;
   destination?: Coordinates;
@@ -75,7 +79,9 @@ export type AllOptions = ForwardGeocodeOptions &
   ReverseGeocodeOptions &
   AutocompleteOptions &
   RoutingOptions &
-  LookupOptions;
+  LookupOptions & {
+    apiKey?: string;
+  };
 
 export type GeocoderUnifiedResult = {
   formattedAddress: string;

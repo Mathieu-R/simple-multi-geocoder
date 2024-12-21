@@ -1,6 +1,7 @@
 import { describe, test, expect } from "vitest";
 import { ForwardGeocodeOptions, ReverseGeocodeOptions } from '../src/types/common';
-import { getSearchParamsObject, snakeToCamel } from '../src/utils';
+import { getSearchParamsObject } from '../src/utils/fetch';
+import { snakeToCamel } from "../src/utils/helpers";
 import { providers } from "../src/providers";
 
 describe("search params", () => {
@@ -21,7 +22,9 @@ describe("search params", () => {
   describe("map parameters to provider query string", () => {
     test("should work as expected and apply template function if provided", () => {
       const options: ForwardGeocodeOptions = {
-        apiKey: fakeApiKey,
+        credentials: {
+          apiKey: fakeApiKey,
+        },
         query: address,
         language,
         country,
@@ -37,8 +40,8 @@ describe("search params", () => {
       expect(searchParamsObject).toStrictEqual({
         apiKey: fakeApiKey,
         q: address,
-        language: language,
-        components: "countryCode:BEL",
+        lang: language,
+        in: "countryCode:BEL",
         limit: limit,
         otherParam: "test"
       })
@@ -46,8 +49,10 @@ describe("search params", () => {
 
     test("should work even if some optional parameters are not set", () => {
       const options: ForwardGeocodeOptions = {
-        apiKey: fakeApiKey,
-        query: address
+        credentials: {
+          apiKey: fakeApiKey,
+        },
+        query: address,
       };
 
       const searchParamsObject = getSearchParamsObject(
@@ -64,9 +69,11 @@ describe("search params", () => {
 
     test("should not return in the object parameters that are not supported by the provider", () => {
       const options: ForwardGeocodeOptions = {
-        apiKey: fakeApiKey,
+        credentials: {
+          apiKey: fakeApiKey,
+        },
         query: address,
-        limit: 3
+        limit: 3,
       };
 
       const searchParamsObject = getSearchParamsObject(
@@ -82,7 +89,9 @@ describe("search params", () => {
 
     test("should work with nested parameters", () => {
       const options: ReverseGeocodeOptions = {
-        apiKey: fakeApiKey,
+        credentials: {
+          apiKey: fakeApiKey,
+        },
         coordinates,
         language,
         country,

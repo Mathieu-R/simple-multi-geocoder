@@ -16,7 +16,7 @@ import { HereRoutingResponse, Route } from "../types/routing/here";
 export async function HereRouting(options: RoutingOptions) {
   const url = providers.here.urls.routing;
   let optionsAugmented: RoutingOptionsAugmented = {
-    apiKey: options.apiKey,
+    credentials: options.credentials,
     origin: options.markers.origin.coordinates,
     destination: options.markers.destination.coordinates,
     transportMode: options.transportMode,
@@ -44,8 +44,9 @@ export async function HereRouting(options: RoutingOptions) {
   }
 
   const headers = new Headers();
-  if (options.bearerToken) {
-    headers.set("Authorization", `Bearer ${options.bearerToken}`);
+
+  if (options.credentials.bearerToken) {
+    headers.set("Authorization", `Bearer ${options.credentials.bearerToken}`);
   }
 
   const response = await ky<HereRoutingResponse>(url, {

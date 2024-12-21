@@ -31,7 +31,19 @@ export async function routing(
   provider: `${Provider}`,
   options: RoutingOptions,
 ) {
-  options = {...DEFAULT_OPTIONS, ...options}
+  options = { ...DEFAULT_OPTIONS, ...options }
+
+  if (!options.credentials.apiKey && !options.credentials.bearerToken) {
+    throw new Error(
+      "Missing credentials. Please provide an API key or a bearer token (in case of using HERE provider). Check the documentation for more information.",
+    );
+  }
+
+  if (options.credentials.apiKey && options.credentials.bearerToken) {
+    throw new Error(
+      "Please provide either an API key or a bearer token (in case of using HERE provider). Check the documentation for more information.",
+    );
+  }
 
   if (provider === Provider.HERE) {
     return HereRouting(options);

@@ -16,6 +16,18 @@ async function geocode(
   provider: `${Provider}`,
   options: ForwardGeocodeOptions | ReverseGeocodeOptions,
 ) {
+  if (!options.credentials.apiKey && !options.credentials.bearerToken) {
+    throw new Error(
+      "Missing credentials. Please provide an API key or a bearer token (in case of using HERE provider). Check the documentation for more information.",
+    );
+  }
+
+  if (options.credentials.apiKey && options.credentials.bearerToken) {
+    throw new Error(
+      "Please provide either an API key or a bearer token (in case of using HERE provider). Check the documentation for more information.",
+    );
+  }
+
   options.raw = options.raw || false;
 
   if (provider === Provider.GOOGLE) {

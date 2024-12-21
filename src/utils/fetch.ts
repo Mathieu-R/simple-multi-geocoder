@@ -13,6 +13,13 @@ export function getSearchParamsObject(
   level = level + 1;
 
   if (level === 1) {
+    // set api key to options object if passed by the user
+    // otherwise, bearerToken should be set (only availaable for HERE provider)
+    const { credentials } = options
+    if (credentials.apiKey) {
+      options.apiKey = credentials.apiKey;
+    }
+
     options.limit = options.limit || DEFAULT_LIMIT;
   }
 
