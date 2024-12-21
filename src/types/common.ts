@@ -24,7 +24,8 @@ export type Coordinates = {
 };
 
 export type CommonOptions = {
-  apiKey: string;
+  apiKey?: string;
+  bearerToken?: string;
   raw?: boolean;
   params?: Params;
 };

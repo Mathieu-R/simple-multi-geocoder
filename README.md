@@ -340,3 +340,33 @@ We always return an array of object with the following fields
 | Field | Type   | Description                                                  |
 | ----- | ------ | ------------------------------------------------------------ |
 | id    | string | The unique identifier of the result provided by the provider |
+
+## Here OAuth 2.0
+
+Here provider supports OAuth 2.0 authentication, see [here documentation](https://www.here.com/docs/bundle/identity-and-access-management-developer-guide/page/topics/plat-token.html) for more information.
+
+This package provides a helper function to generate the access token.
+
+```ts
+import { generateHereAccessToken } from "simple-multi-geocoder";
+const accessToken = await generateHereAccessToken({
+  clientId: "...",
+  clientSecret: "...",
+});
+```
+
+In that case, you should pass the `bearerToken` instead of `apiKey` in the options object.
+
+```ts
+const response = await geocode.forward(
+  "here",
+  {
+    bearerToken: accessToken,
+    query: "Rue du Belvédère 23, 1050 Ixelles, Belgique",
+    country: "BE",
+    language: "fr",
+    limit: 1,
+    raw: true,
+  }
+);
+```
