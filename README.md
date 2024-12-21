@@ -57,17 +57,14 @@ const accessToken = await generateHereAccessToken({
 In that case, you should pass the `bearerToken` instead of `apiKey` in the options object.
 
 ```ts
-const response = await geocode.forward(
-  "here",
-  {
-    bearerToken: accessToken,
-    query: "Rue du Belvédère 23, 1050 Ixelles, Belgique",
-    country: "BE",
-    language: "fr",
-    limit: 1,
-    raw: true,
-  }
-);
+const response = await geocode.forward("here", {
+  credentials: { bearerToken: accessToken },
+  query: "Rue du Belvédère 23, 1050 Ixelles, Belgique",
+  country: "BE",
+  language: "fr",
+  limit: 1,
+  raw: true,
+});
 ```
 
 ## API
@@ -79,15 +76,18 @@ const response = await geocode.forward(
 ```ts
 import { geocode } from "simple-multi-geocoder";
 
-const API_KEY = "..." // get it from secure environment
-const address = "Rue du Belvédère 23, 1050 Ixelles, Belgique"
+const API_KEY = "..."; // get it from secure environment
+const address = "Rue du Belvédère 23, 1050 Ixelles, Belgique";
 
-const response = await geocode.forward(
-  "here",
-  { apiKey: API_KEY, query: address, country: "BE", language: "fr", limit: 1 }
-)
+const response = await geocode.forward("here", {
+  credentials: { apiKey: API_KEY },
+  query: address,
+  country: "BE",
+  language: "fr",
+  limit: 1,
+});
 
-console.log(response)
+console.log(response);
 /*
 {
   formattedAddress: "Rue du Belvédère 23, 1050 Ixelles, Belgique",
@@ -119,24 +119,24 @@ console.log(response)
 
 ##### options
 
-| Parameter               | Type    | Description                                                                                                              |
-| ----------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------ |
-| `credentials` (**required**) | object  | Provider access token (**see below**)                                                                                                   |
-| `query` (**required**)  | string  | Complete address in string format (e.g. _Rue du Belvédère 23, 1050 Ixelles, Belgique_)                                   |
-| `language`              | string  | Language of the returned result (_[IETF BCP 47](https://en.wikipedia.org/wiki/IETF_language_tag) format_)                |
-| `country`               | string  | Limit the search to a specific country (_[ISO_3166-1_alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format_) |
-| `limit`                 | number  | Maximum number of results to be returned (**default: 1**) (_not supported by Google_)                                    |
-| `raw`                   | boolean | Return the raw result                                                                                                    |
-| `params`                | object  | Params object specific to the provider (**see below**)                                                                   |
+| Parameter                    | Type    | Description                                                                                                              |
+| ---------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `credentials` (**required**) | object  | Provider access token (**see below**)                                                                                    |
+| `query` (**required**)       | string  | Complete address in string format (e.g. _Rue du Belvédère 23, 1050 Ixelles, Belgique_)                                   |
+| `language`                   | string  | Language of the returned result (_[IETF BCP 47](https://en.wikipedia.org/wiki/IETF_language_tag) format_)                |
+| `country`                    | string  | Limit the search to a specific country (_[ISO_3166-1_alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format_) |
+| `limit`                      | number  | Maximum number of results to be returned (**default: 1**) (_not supported by Google_)                                    |
+| `raw`                        | boolean | Return the raw result                                                                                                    |
+| `params`                     | object  | Params object specific to the provider (**see below**)                                                                   |
 
 ##### credentials
 
 You should provide one of the following fields:
 
-| Parameter               | Type    | Description                                                                                                              |
-| ----------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------ |
-| `apiKey` | string  | Provider api key                                                                                                   |
-| `bearerToken` | string  | Provider bearer token (**only available for Here**)                                                                                                   |
+| Parameter     | Type   | Description                                         |
+| ------------- | ------ | --------------------------------------------------- |
+| `apiKey`      | string | Provider api key                                    |
+| `bearerToken` | string | Provider bearer token (**only available for Here**) |
 
 ##### params
 
@@ -233,7 +233,7 @@ console.log(response)
 
 | Parameter                    | Type    | Description                                                                                                              |
 | ---------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------ |
-| `credentials` (**required**) | object  | Provider access token (**see above**)                                                                                                   |
+| `credentials` (**required**) | object  | Provider access token (**see above**)                                                                                    |
 | `coordinates` (**required**) | object  | coordinates of the point to reverse geocode                                                                              |
 | `language`                   | string  | Language of the returned result (_[IETF BCP 47](https://en.wikipedia.org/wiki/IETF_language_tag) format_)                |
 | `country`                    | string  | Limit the search to a specific country (_[ISO_3166-1_alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format_) |
@@ -333,15 +333,15 @@ console.log(response)
 
 ##### options
 
-| Parameter               | Type    | Description                                                                                                              |
-| ----------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------ |
-| `credentials` (**required**) | object  | Provider access token (**see above**)                                                                                                   |
-| `query` (**required**)  | string  | Partial address in string format (e.g. _Rue du Belvédère 23_)                                                            |
-| `language`              | string  | Language of the returned result (_[IETF BCP 47](https://en.wikipedia.org/wiki/IETF_language_tag) format_)                |
-| `country`               | string  | Limit the search to a specific country (_[ISO_3166-1_alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format_) |
-| `limit`                 | number  | Maximum number of results to be returned (**default: 1**) (_not supported by Google_)                                    |
-| `raw`                   | boolean | Return the raw result                                                                                                    |
-| `params`                | object  | Params object specific to the provider (**see below**)                                                                   |
+| Parameter                    | Type    | Description                                                                                                              |
+| ---------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `credentials` (**required**) | object  | Provider access token (**see above**)                                                                                    |
+| `query` (**required**)       | string  | Partial address in string format (e.g. _Rue du Belvédère 23_)                                                            |
+| `language`                   | string  | Language of the returned result (_[IETF BCP 47](https://en.wikipedia.org/wiki/IETF_language_tag) format_)                |
+| `country`                    | string  | Limit the search to a specific country (_[ISO_3166-1_alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format_) |
+| `limit`                      | number  | Maximum number of results to be returned (**default: 1**) (_not supported by Google_)                                    |
+| `raw`                        | boolean | Return the raw result                                                                                                    |
+| `params`                     | object  | Params object specific to the provider (**see below**)                                                                   |
 
 ##### params
 
