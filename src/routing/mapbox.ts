@@ -29,7 +29,7 @@ export async function MapboxRouting(options: RoutingOptions) {
   url += `/${options.markers.origin.coordinates.longitude},${options.markers.origin.coordinates.latitude};${options.markers.destination.coordinates.longitude},${options.markers.destination.coordinates.latitude}`;
 
   let optionsAugmented: RoutingOptionsAugmented = {
-    apiKey: options.apiKey,
+    credentials: options.credentials,
     alternatives: options.alternatives,
     params: options.params,
   };
@@ -62,10 +62,10 @@ export async function MapboxRouting(options: RoutingOptions) {
     throw new Error("[ROUTING] Error computing route...");
   }
 
-  return response.routes.map((route) => formatResult(options, route));
+  return response.routes.map((route) => formatResult(route, options));
 }
 
-export function formatResult(options: RoutingOptions, result: Route) {
+export function formatResult(result: Route, options: RoutingOptions) {
   return {
     departureTime: options.markers.origin.time ?? undefined,
     arrivalTime: options.markers.origin.time
@@ -79,14 +79,17 @@ export function formatResult(options: RoutingOptions, result: Route) {
     },
     duration: {
       value: result.duration,
-      text: formatSecondsToHumanReadable(result.duration),
+      text: formatSecondsToHumanReadable(result.duration, options.language),
     },
     // duration specified under typical traffic conditions
     // (dynamic traffic conditions not considered)
     typicalDuration: options.traffic
       ? {
           value: result.duration_typical,
-          text: formatSecondsToHumanReadable(result.duration_typical),
+          text: formatSecondsToHumanReadable(
+            result.duration_typical,
+            options.language,
+          ),
         }
       : undefined,
     path: result.geometry ?? undefined,

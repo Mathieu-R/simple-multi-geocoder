@@ -2,6 +2,7 @@ import {
   intervalToDuration,
   formatDuration,
 } from "date-fns";
+import { getLocaleFromLanguage } from "./helpers";
 
 export async function polylineToGeoJSON(polyline: string) {
   const mbPolyline = await import("@mapbox/polyline");
@@ -9,10 +10,6 @@ export async function polylineToGeoJSON(polyline: string) {
 }
 
 export function formatDistance(distance: number) {
-  if (distance < 1000) {
-    return `${distance}m`;
-  }
-
   return `${(distance / 1000).toFixed(2)}km`;
 }
 
@@ -25,8 +22,9 @@ export function secondsToDuration(seconds: number) {
   });
 }
 
-export function formatSecondsToHumanReadable(seconds: number): string {
+export function formatSecondsToHumanReadable(seconds: number, language?: string): string {
   return formatDuration(secondsToDuration(seconds), {
-    format: ["hours", "minutes"],
+    format: ["hours", "minutes", "seconds"],
+    locale: getLocaleFromLanguage(language),
   });
 }

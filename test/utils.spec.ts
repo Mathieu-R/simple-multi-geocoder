@@ -1,8 +1,15 @@
 import { describe, test, expect } from "vitest";
-import { ForwardGeocodeOptions, ReverseGeocodeOptions } from '../src/types/common';
-import { getSearchParamsObject } from '../src/utils/fetch';
+import {
+  ForwardGeocodeOptions,
+  ReverseGeocodeOptions,
+} from "../src/types/common";
+import { getSearchParamsObject } from "../src/utils/fetch";
 import { snakeToCamel } from "../src/utils/helpers";
 import { providers } from "../src/providers";
+import {
+  formatSecondsToHumanReadable,
+  secondsToDuration,
+} from "../src/utils/routing";
 
 describe("search params", () => {
   const fakeApiKey = "123";
@@ -29,7 +36,7 @@ describe("search params", () => {
         language,
         country,
         limit,
-        params: otherParams
+        params: otherParams,
       };
 
       const searchParamsObject = getSearchParamsObject(
@@ -43,9 +50,9 @@ describe("search params", () => {
         lang: language,
         in: "countryCode:BEL",
         limit: limit,
-        otherParam: "test"
-      })
-    })
+        otherParam: "test",
+      });
+    });
 
     test("should work even if some optional parameters are not set", () => {
       const options: ForwardGeocodeOptions = {
@@ -63,7 +70,7 @@ describe("search params", () => {
       expect(searchParamsObject).toStrictEqual({
         apiKey: fakeApiKey,
         q: address,
-        limit: 1
+        limit: 1,
       });
     });
 
@@ -114,12 +121,42 @@ describe("search params", () => {
         otherParam: "test",
       });
     });
-  })
-})
+  });
+});
 
 describe("snake to camel", () => {
   test("should convert snake_case string to camelCase", () => {
-    const snakeCaseString = "snake_case"
-    expect(snakeToCamel(snakeCaseString)).toBe("snakeCase")
-  })
-})
+    const snakeCaseString = "snake_case";
+    expect(snakeToCamel(snakeCaseString)).toBe("snakeCase");
+  });
+});
+
+describe("duration", () => {
+  test("should return time travel in human readable format (default: en)", () => {
+    // duration in seconds
+    let duration = 90;
+
+    expect(secondsToDuration(duration)).toStrictEqual({
+      minutes: 1,
+      seconds: 30,
+    });
+
+    expect(formatSecondsToHumanReadable(duration)).toBe("1 minute 30 seconds");
+
+    duration = 30;
+    expect(secondsToDuration(duration)).toStrictEqual({
+      seconds: 30,
+    });
+
+    expect(formatSecondsToHumanReadable(duration)).toBe("30 seconds");
+  });
+
+  test("should return time travel in human readable format (fr)", () => {
+    // duration in seconds
+    let duration = 90;
+    expect(formatSecondsToHumanReadable(duration, 'fr')).toBe("1 minute 30 secondes");
+
+    duration = 30;
+    expect(formatSecondsToHumanReadable(duration, 'fr')).toBe("30 secondes");
+  });
+});

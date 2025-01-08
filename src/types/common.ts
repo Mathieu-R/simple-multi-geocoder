@@ -50,6 +50,7 @@ export type AutocompleteOptions = ForwardGeocodeOptions & {
 };
 
 export type RoutingOptions = CommonOptions & {
+  language?: string;
   markers: RoutingMarkers;
   transportMode?: TransportMode;
   alternatives?: boolean;
