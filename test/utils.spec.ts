@@ -141,22 +141,22 @@ describe("duration", () => {
       seconds: 30,
     });
 
-    expect(formatSecondsToHumanReadable(duration)).toBe("1 minute 30 seconds");
+    expect(formatSecondsToHumanReadable(duration)).toBe("1 minute");
 
     duration = 30;
     expect(secondsToDuration(duration)).toStrictEqual({
       seconds: 30,
     });
 
-    expect(formatSecondsToHumanReadable(duration)).toBe("30 seconds");
+    expect(formatSecondsToHumanReadable(duration)).toBe("");
   });
 
-  test("should return time travel in human readable format (fr)", () => {
+  test("should return time travel in human readable format (nl)", () => {
     // duration in seconds
-    let duration = 90;
-    expect(formatSecondsToHumanReadable(duration, 'fr')).toBe("1 minute 30 secondes");
+    let duration = 180;
+    expect(formatSecondsToHumanReadable(duration, 'nl')).toBe("3 minuten");
 
     duration = 30;
-    expect(formatSecondsToHumanReadable(duration, 'fr')).toBe("30 secondes");
+    expect(formatSecondsToHumanReadable(duration, 'nl')).toBe("");
   });
 });

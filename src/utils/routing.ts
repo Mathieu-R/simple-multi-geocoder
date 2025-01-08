@@ -24,7 +24,7 @@ export function secondsToDuration(seconds: number) {
 
 export function formatSecondsToHumanReadable(seconds: number, language?: string): string {
   return formatDuration(secondsToDuration(seconds), {
-    format: ["hours", "minutes", "seconds"],
+    format: ["hours", "minutes"],
     locale: getLocaleFromLanguage(language),
   });
 }

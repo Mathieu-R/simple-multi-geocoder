@@ -61,10 +61,10 @@ export async function HereRouting(options: RoutingOptions) {
     return response as unknown;
   }
 
-  return Promise.all(response.routes.map((route) => formatResult(route, options.language)));
+  return Promise.all(response.routes.map((route) => formatResult(route, options)));
 }
 
-export async function formatResult(result: Route, language?: string) {
+export async function formatResult(result: Route, options: RoutingOptions) {
   // route.sections is an ordered list of vehicle, transit and pedestrians sections
   // making up the route
   // in our case, we should only have one section
@@ -78,13 +78,13 @@ export async function formatResult(result: Route, language?: string) {
     },
     duration: {
       value: item.travelSummary.duration,
-      text: formatSecondsToHumanReadable(item.travelSummary.duration, language),
+      text: formatSecondsToHumanReadable(item.travelSummary.duration, options.language),
     },
     // duration specified under typical traffic conditions
     // (dynamic traffic conditions not considered)
     typicalDuration: {
       value: item.travelSummary.typicalDuration,
-      text: formatSecondsToHumanReadable(item.travelSummary.duration, language),
+      text: formatSecondsToHumanReadable(item.travelSummary.duration, options.language),
     },
     path: item.polyline ? await polylineToGeoJSON(item.polyline) : undefined,
   } as RoutingUnifiedResult;
