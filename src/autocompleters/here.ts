@@ -1,4 +1,6 @@
 import ky from "ky";
+import countries from "i18n-iso-countries";
+
 import {
   AutocompleteOptions,
   AutocompleteUnifiedResult,
@@ -43,7 +45,7 @@ export function formatResult(result: Item) {
       district: result.address.district,
       building: result.address.building,
       country: result.address.countryName,
-      countryCode: result.address.countryCode,
+      countryCode: countries.alpha3ToAlpha2(result.address.countryCode)
     },
     extra: {
       id: result.id,
