@@ -34,8 +34,19 @@ export type Credentials = {
   bearerToken?: string;
 };
 
+
+export type StructuredAddress = {
+  street: string;
+  number?: string;
+  box?: string;
+  zip: string;
+  city: string;
+  country: string;
+}
+
 export type ForwardGeocodeOptions = CommonOptions & {
   query: string;
+  address?: StructuredAddress;
   language?: string;
   country?: string;
   limit?: number;

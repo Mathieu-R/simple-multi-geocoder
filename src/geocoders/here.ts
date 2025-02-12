@@ -8,6 +8,7 @@ import {
   GeocoderUnifiedResult,
   GeocodeType,
   ReverseGeocodeOptions,
+  StructuredAddress,
 } from "../types/common";
 import { Feature, HereResponse } from "../types/geocoders/here";
 import { providers } from "../providers";
@@ -22,6 +23,11 @@ export async function HereGeocode(
     options,
     providers.here.options.geocode[type],
   );
+
+  if (options.address) {
+    searchParamsObject.qq = formatStructuredQuery(options.address);
+    delete searchParamsObject.q;
+  }
 
   const headers = new Headers();
 
@@ -70,4 +76,18 @@ export function formatResult(feature: Feature) {
   };
 
   return formatted;
+}
+
+function formatStructuredQuery(address: StructuredAddress) {
+  const fields = {
+    country: address.country,
+    city: address.city,
+    street: address.street,
+    houseNumber: address.number,
+    postalCode:  address.zip
+  }
+  return Object.entries(fields)
+    .map(([key, value]) => `${key}=${value}`)
+    .join(";");
+
 }

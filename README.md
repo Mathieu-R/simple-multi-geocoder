@@ -123,11 +123,27 @@ console.log(response);
 | ---------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------ |
 | `credentials` (**required**) | object  | Provider access token (**see below**)                                                                                    |
 | `query` (**required**)       | string  | Complete address in string format (e.g. _Rue du Belvédère 23, 1050 Ixelles, Belgique_)                                   |
+| `address`                    | StructuredAddress | Structured address object to geocode (_see below_)                                                                   |
 | `language`                   | string  | Language of the returned result (_[IETF BCP 47](https://en.wikipedia.org/wiki/IETF_language_tag) format_)                |
 | `country`                    | string  | Limit the search to a specific country (_[ISO_3166-1_alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format_) |
 | `limit`                      | number  | Maximum number of results to be returned (**default: 1**) (_not supported by Google_)                                    |
 | `raw`                        | boolean | Return the raw result                                                                                                    |
 | `params`                     | object  | Params object specific to the provider (**see below**)                                                                   |
+
+###### Object `StructuredAddress`
+
+Only available for Here provider for now, you can pass an object with the following fields:
+
+```ts
+import { StructuredAddress } from "simple-multi-geocoder";
+const address: StructuredAddress = {
+  street: "Rue du chemin",
+  number: "123",
+  zip: "1234",
+  city: "City",
+  country: "Country",
+};
+```
 
 ##### credentials
 
