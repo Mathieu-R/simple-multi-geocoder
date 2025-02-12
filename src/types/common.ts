@@ -122,6 +122,18 @@ export type Extra = {
   id: string;
   bbox?: number[];
   confidence?: number;
+  confidenceFields?: {
+    streetNumber?: number;
+    streetName?: number;
+    zipCode?: number;
+    state?: number;
+    city?: number;
+    county?: number;
+    district?: number;
+    country?: number;
+    countryCode?: number;
+    building?: number;
+  };
 };
 
 export type AutocompleteUnifiedResult = Partial<

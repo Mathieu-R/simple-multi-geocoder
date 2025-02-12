@@ -47,6 +47,9 @@ export async function HereGeocode(
   return response.items.map((feature) => formatResult(feature));
 }
 
+const toFixed = (value?: number) =>
+  value ? Number.parseFloat(value.toFixed(2)) : undefined;
+
 export function formatResult(feature: Feature) {
   const { address, position, scoring, id } = feature;
 
@@ -72,6 +75,21 @@ export function formatResult(feature: Feature) {
         "queryScore" in scoring
           ? Number.parseFloat(scoring.queryScore.toFixed(2))
           : 0,
+      confidenceFields: {
+        streetNumber: toFixed(scoring.fieldScore?.houseNumber),
+        streetName: scoring.fieldScore?.streets
+          ?.map(toFixed)
+          // Find the lowest score
+          .reduce((a, b) => Math.min(a, b), 1),
+        zipCode: toFixed(scoring.fieldScore?.postalCode),
+        state: toFixed(scoring.fieldScore?.state),
+        city: toFixed(scoring.fieldScore?.city),
+        county: toFixed(scoring.fieldScore?.county),
+        district: toFixed(scoring.fieldScore?.district),
+        country: toFixed(scoring.fieldScore?.country),
+        countryCode: toFixed(scoring.fieldScore?.countryCode),
+        building: toFixed(scoring.fieldScore?.building),
+      },
     },
   };
 
