@@ -98,7 +98,7 @@ export function formatResult(feature: Feature) {
 
 function formatStructuredQuery(address: StructuredAddress) {
   const fields = {
-    country: address.country,
+    country: address.countryCode,
     city: address.city,
     street: address.street,
     houseNumber: address.number,
