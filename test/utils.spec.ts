@@ -15,7 +15,7 @@ describe("search params", () => {
   const fakeApiKey = "123";
   const address = "Rue du Belvédère 23, 1050 Ixelles, Belgique";
   const language = "fr";
-  const country = "BE";
+  const countryCode = "BE";
   const limit = 3;
   const otherParams = {
     otherParam: "test",
@@ -34,7 +34,7 @@ describe("search params", () => {
         },
         query: address,
         language,
-        country,
+        countryCode,
         limit,
         params: otherParams,
       };
@@ -101,7 +101,7 @@ describe("search params", () => {
         },
         coordinates,
         language,
-        country,
+        countryCode,
         limit,
         params: otherParams,
       };
@@ -116,7 +116,7 @@ describe("search params", () => {
         latitude: coordinates.latitude,
         longitude: coordinates.longitude,
         language: language,
-        country: country,
+        country: countryCode,
         limit: limit,
         otherParam: "test",
       });

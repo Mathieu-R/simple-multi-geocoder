@@ -11,6 +11,5 @@ test("format autocomplete api response", () => {
     formatResult(response),
   );
 
-  console.log(results)
   expect(results).toMatchObject(expectedForwardGeocodingFormattedResult);
 });
