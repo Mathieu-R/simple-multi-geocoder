@@ -17,7 +17,7 @@ const COMMON_GOOGLE_OPTIONS: OptionMapping[] = [
     mappedParam: "language",
   },
   {
-    option: "country",
+    option: "countryCode",
     mappedParam: "region",
   },
 ];
@@ -32,7 +32,8 @@ const COMMON_HERE_OPTIONS: OptionMapping[] = [
     mappedParam: "lang",
   },
   {
-    option: "country",
+    // Note: make sure you pass the country code in ISO 3166-1 alpha-2 format (BE, FR, NL,...)
+    option: "countryCode",
     mappedParam: "in",
     // alpha-3 ISO code with `countryCode:<alpha-3 ISO code>`
     templateFn: (countryCodeAlpha2: string) =>
@@ -54,7 +55,7 @@ const COMMON_MAPBOX_OPTIONS: OptionMapping[] = [
     mappedParam: "language",
   },
   {
-    option: "country",
+    option: "countryCode",
     mappedParam: "country",
   },
   {

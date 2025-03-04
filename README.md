@@ -125,7 +125,7 @@ console.log(response);
 | `query` (**required**)       | string  | Complete address in string format (e.g. _Rue du Belvédère 23, 1050 Ixelles, Belgique_)                                   |
 | `address`                    | StructuredAddress | Structured address object to geocode (_see below_)                                                                   |
 | `language`                   | string  | Language of the returned result (_[IETF BCP 47](https://en.wikipedia.org/wiki/IETF_language_tag) format_)                |
-| `country`                    | string  | Limit the search to a specific country (_[ISO_3166-1_alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format_) |
+| `countryCode`                | string  | Limit the search to a specific country (_[ISO_3166-1_alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format_) |
 | `limit`                      | number  | Maximum number of results to be returned (**default: 1**) (_not supported by Google_)                                    |
 | `raw`                        | boolean | Return the raw result                                                                                                    |
 | `params`                     | object  | Params object specific to the provider (**see below**)                                                                   |
@@ -141,7 +141,7 @@ const address: StructuredAddress = {
   number: "123",
   zip: "1234",
   city: "City",
-  country: "Country",
+  countryCode: "Country Code (in ISO 3166-1 alpha-2 format)",
 };
 ```
 
@@ -252,7 +252,7 @@ console.log(response)
 | `credentials` (**required**) | object  | Provider access token (**see above**)                                                                                    |
 | `coordinates` (**required**) | object  | coordinates of the point to reverse geocode                                                                              |
 | `language`                   | string  | Language of the returned result (_[IETF BCP 47](https://en.wikipedia.org/wiki/IETF_language_tag) format_)                |
-| `country`                    | string  | Limit the search to a specific country (_[ISO_3166-1_alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format_) |
+| `countryCode`                    | string  | Limit the search to a specific country (_[ISO_3166-1_alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format_) |
 | `limit`                      | number  | Maximum number of results to be returned (**default: 1**) (_not supported by Google_)                                    |
 | `raw`                        | boolean | Return the raw result                                                                                                    |
 | `params`                     | object  | Params object specific to the provider (**see below**)                                                                   |
@@ -354,7 +354,7 @@ console.log(response)
 | `credentials` (**required**) | object  | Provider access token (**see above**)                                                                                    |
 | `query` (**required**)       | string  | Partial address in string format (e.g. _Rue du Belvédère 23_)                                                            |
 | `language`                   | string  | Language of the returned result (_[IETF BCP 47](https://en.wikipedia.org/wiki/IETF_language_tag) format_)                |
-| `country`                    | string  | Limit the search to a specific country (_[ISO_3166-1_alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format_) |
+| `countryCode`                    | string  | Limit the search to a specific country (_[ISO_3166-1_alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format_) |
 | `limit`                      | number  | Maximum number of results to be returned (**default: 1**) (_not supported by Google_)                                    |
 | `raw`                        | boolean | Return the raw result                                                                                                    |
 | `params`                     | object  | Params object specific to the provider (**see below**)                                                                   |

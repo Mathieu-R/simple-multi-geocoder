@@ -41,14 +41,14 @@ export type StructuredAddress = {
   box?: string;
   zip: string;
   city: string;
-  country: string;
+  countryCode: string;
 }
 
 export type ForwardGeocodeOptions = CommonOptions & {
   query: string;
   address?: StructuredAddress;
   language?: string;
-  country?: string;
+  countryCode?: string;
   limit?: number;
 };
 
