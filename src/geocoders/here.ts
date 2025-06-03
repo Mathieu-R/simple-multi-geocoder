@@ -102,10 +102,10 @@ function formatStructuredQuery(address: StructuredAddress) {
     city: address.city,
     street: address.street,
     houseNumber: address.number,
-    postalCode:  address.zip
-  }
+    postalCode: address.zip,
+  };
   return Object.entries(fields)
+    .filter(([key, value]) => !!value) // Value must be non-empty
     .map(([key, value]) => `${key}=${value}`)
     .join(";");
-
 }
